@@ -17,7 +17,6 @@ export default {
                     <img :src="logObj"  >
                 </div>
             </div>
-            
             <div class="search-wrapper">
                 <input placeholder="Search">
             </div>

@@ -43,14 +43,21 @@
     height: 40px;
 }
 
-.nav-wrapper .search-wrapper input {
-    padding-left: 10px;
+.nav-wrapper .search-wrapper {
     width: 742px;
     height: 46px;
-    background-color: brown;
+}
+
+.nav-wrapper .search-wrapper input {
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
     border: 1px solid #9e9e9e33;
     background-color: unset;
+
+
 }
+
 
 .nav-wrapper .apps-box-wrapper button {
     background-color: unset;
