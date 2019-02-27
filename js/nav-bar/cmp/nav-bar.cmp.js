@@ -14,7 +14,7 @@ export default {
                     </button>
                 </div>
                 <div class="logo-wrapper">
-                    <img src="https://www.google.com/images/icons/product/keep-512.png"  >
+                    <img :src="logObj"  >
                 </div>
             </div>
             
@@ -27,15 +27,25 @@ export default {
                 </button>
             </div>
         </nav>   
-        <appsBox v-if="showAppBox" />
+        <appsBox  />
     </section>
     `,
     data() {
         return {
-            showAppBox: false
+            logo: {
+                keep: 'https://www.google.com/images/icons/product/keep-512.png',
+                email: 'http://pngimg.com/uploads/gmail_logo/gmail_logo_PNG1.png'
+            },
         }
     },
     methods: {
 
+    },
+    computed: { 
+        logObj() {
+            return this.$route.path === '/' ? this.logo.keep : this.logo.email
+        }
+    },
+    created() {
     },
 }
