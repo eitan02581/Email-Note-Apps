@@ -1,0 +1,9 @@
+
+
+section.notes-creator-wrapper{
+    width: 496px;
+background-color: rgb(255, 255, 255);
+box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+border: 1px solid #dadce0;
+border-radius: 8px;
+}

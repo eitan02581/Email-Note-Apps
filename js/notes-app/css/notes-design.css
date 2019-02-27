@@ -5,22 +5,40 @@
 }
 
 .note-preview-wrapper div.note{
+    position:relative;
     width: 240px;
     border-radius: 8px;
     background-color: rgb(255, 255, 255);
     border: 1px solid #dadce0;
+    margin:10px;
 }
 
 .note-preview-wrapper div.title{
     padding-top: 12px;
     letter-spacing: .00625em;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.5rem;
     min-height: 38px;
     padding: 16px 16px 0 16px;
-    font-variant-ligatures: none;
-    outline: none;
-    white-space: pre-wrap;
-    word-wrap: break-word;
+}
+
+.note-preview-wrapper div.content{
+    font-size: 1.125rem;
+    font-weight: 400;
+    line-height: 1.5rem;
+    min-height: 30px;
+    letter-spacing: .01428571em;
+    padding: 4px 16px 12px 16px;
+}
+
+.note-preview-wrapper img{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    width: 100%;
+}
+
+.note-preview-wrapper button.pin{
+    position :absolute;
+    right:0%;
 }
