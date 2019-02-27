@@ -1,8 +1,12 @@
 
 export default {
+    props:['note'],
     template: `
         <section class="note-preview-wrapper">
-             <h1>im the previeww</h1>
+             <div class="note">
+             <div class="title">{{noteContentTiltle}}</div>
+             {{noteContentText}}
+            </div>
         </section> 
     `,
     data() {
@@ -12,5 +16,13 @@ export default {
     },
     methods: {
        
+    },
+    computed:{
+        noteContentTiltle(){
+            return this.note.content.title
+        },
+        noteContentText(){
+            return this.note.content.text
+        }
     }
 }

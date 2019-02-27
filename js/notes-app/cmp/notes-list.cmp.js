@@ -6,7 +6,8 @@ export default {
         <section class="notes-list-wrapper">
              <h1>im list cmp</h1>
              <pre>{{notes}}</pre>
-             <note-preview/>
+             <note-preview :key="currNote.id" v-for="(currNote, idx) in notes" :note="currNote">
+            </note-preview>
         </section> 
     `,
     components:{
