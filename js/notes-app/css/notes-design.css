@@ -1,0 +1,26 @@
+
+.notes-app-wrapper{
+    font-size: 15px;
+
+}
+
+.note-preview-wrapper div.note{
+    width: 240px;
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #dadce0;
+}
+
+.note-preview-wrapper div.title{
+    padding-top: 12px;
+    letter-spacing: .00625em;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.5rem;
+    min-height: 38px;
+    padding: 16px 16px 0 16px;
+    font-variant-ligatures: none;
+    outline: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}

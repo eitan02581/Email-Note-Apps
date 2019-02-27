@@ -1,0 +1,15 @@
+.email-app-wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.aside {
+    width: 240px;
+    height: 100%;
+}
+
+.compose-new-mail {
+    position: absolute;
+    bottom: 0;
+}
