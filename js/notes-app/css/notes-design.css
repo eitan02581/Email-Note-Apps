@@ -1,6 +1,5 @@
 
 .notes-app-wrapper{
-    font-family: 'Roboto',arial,sans-serif;
     font-size: 15px;
 
 }
@@ -15,7 +14,6 @@
 .note-preview-wrapper div.title{
     padding-top: 12px;
     letter-spacing: .00625em;
-    font-family: 'Google Sans';
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.5rem;
