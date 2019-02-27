@@ -1,0 +1,85 @@
+/* nav-bar cmp */
+.nav-wrapper nav {
+    margin: 0;
+    height: 70px;
+    background-color: white;
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #9e9e9e33;
+    transition: 0.3s;
+}
+
+.nav-wrapper .logo-ham-container {
+    width: 240px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-wrapper .hamburger-wrapper button {
+    background-color: unset;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.nav-wrapper .hamburger-wrapper button:hover {
+    background-color: #9e9e9e33;
+}
+
+.nav-wrapper .hamburger-wrapper img {
+    /* background-color: aqua; */
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+}
+
+.nav-wrapper .logo-wrapper img {
+    width: 44px;
+    height: 40px;
+}
+
+.nav-wrapper .search-wrapper input {
+    padding-left: 10px;
+    width: 742px;
+    height: 46px;
+    background-color: brown;
+    border: 1px solid #9e9e9e33;
+    background-color: unset;
+}
+
+.nav-wrapper .apps-box-wrapper button {
+    background-color: unset;
+    border: none;
+    width: 60px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.nav-wrapper .apps-box-wrapper button:hover {
+    background-color: #9e9e9e33;
+}
+
+.nav-wrapper nav:hover {
+    box-shadow: 0px 3px 10px 0px #607d8b87;
+}
+
+/* nav-bar-apps-box */
+.apps-wrapper {
+    position: absolute;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    border: 1px solid #607d8b87;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,29 +1,29 @@
 var gNextId = 3
 
-export default{
+export default {
     getNotes,
     getArchiveNotes,
+    
 
 }
 
-function getNotes(){
+function getNotes() {
     return gNotes
 }
 
-function getArchiveNotes(){
-    
+function getArchiveNotes() {
+
 }
 
-var gNotes = [
-    {
+var gNotes = [{
         id: 1,
         createdAt: 1551259417463,
         archive: false,
         pinned: false,
         content: {
-            title: 'second note ever',
-            text: 'im a text note also',
-            imageUrl:'',
+            title: 'first note ever',
+            text: 'im a text',
+            imageUrl: '',
         },
         backgroundColor: 'white',
     },
@@ -35,7 +35,7 @@ var gNotes = [
         content: {
             title: 'second note ever',
             text: 'im a text note also',
-            imageUrl:'',
+            imageUrl: '',
         },
         backgroundColor: 'white',
     }
