@@ -1,5 +1,11 @@
+@font-face {
+    font-family: 'google';
+    src: url('/css/fonts/NotoSans-Regular.ttf'); 
+}
 * {
     box-sizing: border-box;
+    font-family: google;
+
 }
 
 body {

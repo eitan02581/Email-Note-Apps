@@ -3,6 +3,7 @@ var gNextId = 3
 export default {
     getNotes,
     getArchiveNotes,
+    
 
 }
 
@@ -20,8 +21,8 @@ var gNotes = [{
         archive: false,
         pinned: false,
         content: {
-            title: 'second note ever',
-            text: 'im a text note also',
+            title: 'first note ever',
+            text: 'im a text',
             imageUrl: '',
         },
         backgroundColor: 'white',
