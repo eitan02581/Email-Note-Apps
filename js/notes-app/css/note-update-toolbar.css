@@ -1,0 +1,41 @@
+
+
+
+section.note-update-toolbar input#imageUrl{
+    position: absolute;
+}
+
+section.note-update-toolbar{
+    user-select: none;
+
+}
+
+
+
+
+section.note-update-toolbar-color-pallete div.color-pallete-container{
+    position: absolute;
+    user-select: none;
+    background-color:white;
+    width: 141px;
+    padding: 3px;
+    z-index: 3;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.20);
+}
+
+section.note-update-toolbar-color-pallete button.color{
+    margin-bottom: 4px;
+    user-select: none;
+    /* border-color: rgb(242, 139, 130); */
+    border-radius: 50%;
+    height: 26px;
+    width: 26px;
+    margin: 2px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    outline: none!important;
+}
+section.note-update-toolbar button.color:hover{
+   border-color:rgb(182, 182, 182);
+}

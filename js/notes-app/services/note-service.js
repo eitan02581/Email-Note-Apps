@@ -6,6 +6,8 @@ export default {
     createTextNote,
     deleteNoteByid,
     updateImage,
+    updateBackgroundColor,
+    toggleArchiveById,
   
 }
 
@@ -37,12 +39,21 @@ function createTextNote(newTitle,newText){
 
 function deleteNoteByid(noteId){
     var deleteIdx = gNotes.findIndex((note)=>note.id === noteId)
-    console.log('note to delete',deleteIdx)
     gNotes.splice(deleteIdx,1)
 }
+function toggleArchiveById(noteId){
+   var currNote = _getNoteById(noteId)
+   currNote.archive = !currNote.archive
+}
+
 function updateImage(id,imageUrl){
     var note = _getNoteById(id)
     note.content.imageUrl = imageUrl
+}
+
+function updateBackgroundColor(noteId,color){
+    var note = _getNoteById(noteId)
+    note.backgroundColor = color
 }
 
 var gNotes = [{

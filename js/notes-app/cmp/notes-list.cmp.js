@@ -7,16 +7,19 @@ export default {
             <div v-if="pinViewMode" class="block">pinned</div>
 
             <div class="list-container">
-            <note-preview :key="currNote.id" v-for="(currNote, idx) in pinnedNotesOnly" :note="currNote">
+            <note-preview @openEditor="openingEditor"  :key="currNote.id" v-for="(currNote, idx) in pinnedNotesOnly" :note="currNote">
             </note-preview>
             </div>
           
             <div v-if="pinViewMode" class="block">others</div>
 
             <div class="list-container">
-             <note-preview :key="currNote.id" v-for="(currNote, idx) in unpinnedNotesOnly" :note="currNote">
+             <note-preview @openEditor="openingEditor" :key="currNote.id" v-for="(currNote, idx) in unpinnedNotesOnly" :note="currNote">
             </note-preview>
             </div>
+
+            <div v-if="showEditor">editor component</div>
+
         </section> 
     `,
     components: {
@@ -25,11 +28,18 @@ export default {
     data() {
         return {
             notes: null,
+            noteInEditor:null,
+            showEditor:false,
 
         }
     },
     methods: {
+        openingEditor(note){
+        console.log('i will open editor to this note:',note)
+        this.noteInEditor = note
+        this.showEditor = true
 
+        }
     },
     computed: {
         pinnedNotesOnly() {
