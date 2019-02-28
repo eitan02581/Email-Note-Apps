@@ -2,7 +2,9 @@ export default {
     getInboxEmails,
     getSentEmails,
     sendEmail,
-    deleteEmail
+    deleteEmail,
+    getEmailById,
+    emailClicked
 }
 var gNextId = 0
 var gInboxEmails = [{
@@ -71,4 +73,34 @@ function deleteEmail(emailId, category) {
         // TODO: add more email options like archive.. 
     }
     return Promise.resolve(updatedEmails)
+}
+
+function getEmailById(emailId, category) {
+    var email
+    if (category === 'inbox') {
+        email = gInboxEmails.find((email) => {
+            return email.id === emailId
+        })
+    } else if (category === 'sent') {
+        email = gSentEmails.find((email) => {
+            return email.id === emailId
+        })
+    }
+    return Promise.resolve(email)
+
+}
+
+function emailClicked(emailId, category, setUnRead) {
+    var email
+    getEmailById(emailId, category).then((email) => {
+        email = email
+        if (setUnRead) {
+            console.log('setUNread');
+
+            email.isRead = !email.isRead
+        } else email.isRead = true
+    })
+
+
+
 }

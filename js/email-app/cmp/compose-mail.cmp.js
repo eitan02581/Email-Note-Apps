@@ -8,11 +8,11 @@ export default {
             <h1>New Message</h1>
             <button @click="onExitCompose" >X</button>
         </div>
-        <form>
+        <form >
             <input  placeholder="To">
             <input  v-model="emailObj.body" placeholder="Subject">
             <textarea v-model="emailObj.subject" placeholder=""></textarea>
-            <button  @click.prenvent="onSendEmail" >Send</button>
+            <button  @click.prenvent.stop="onSendEmail" >Send</button>
         </form>
            
         </div>
@@ -33,10 +33,12 @@ export default {
         },
         onSendEmail() {
             // TODO: MAKE VALIDATION css
-            if (this.emailObj.subject && this.emailObj.body) emailService.sendEmail(this.emailObj);
-            setTimeout(() => {
-                onExitCompose()
-            }, 700)
+            if (this.emailObj.subject && this.emailObj.body) {
+                emailService.sendEmail(this.emailObj);
+                setTimeout(() => {
+                    this.onExitCompose()
+                }, 700)
+            }
 
         }
     },

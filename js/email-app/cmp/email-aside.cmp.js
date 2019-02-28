@@ -4,13 +4,13 @@ export default {
     <section class="email-aside-wrapper">
      <div class="email-aside-container">
             <div class="comose-btn">
-            <button @click="onComposeBtn">+ Compose</button> 
+                <button @click="onComposeBtn">+ Compose</button> 
             </div>
             <div class="inbox-btn">
-            <button @click="onTypeOfMails('inbox')">Inbox</button> 
+                 <router-link @click="onTypeOfMails('inbox')" to="/email/inbox">Inbox</router-link>
             </div>
             <div class="sent-btn">
-                <button  @click="onTypeOfMails('sent')">Sent</button> 
+                <router-link @click="onTypeOfMails('sent')" to="/email/sent">sent</router-link>
             </div>
      </div>
     </section>

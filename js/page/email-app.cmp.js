@@ -7,6 +7,12 @@ import emailDetails from '../email-app/cmp/email-details.cmp.js'
 //     eventBus,
 //     SHOW_EMAIL_DETAILS
 // } from '../service/event-bus.js'
+//    <div  v-if="!isEmailClicked" class="email-list">
+/* <emails-list @emai lClicked="onEmailClicked" :emails="emailsByCategory" ></emails-list>
+</div>
+<div v-if="isEmailClicked" class="email-details">
+    <email-details @deleteEmail="onDeleteEmail" :email="selectedEmail" ></email-details>
+</div> */
 export default {
     name: 'email-app',
     components: {
@@ -20,12 +26,8 @@ export default {
         <div class="aside">
             <email-aside @showCompose="showCompose = true" @emailType="changeTypeOfList "></email-aside>
         </div>
-        <div  v-if="!isEmailClicked" class="email-list">
-             <emails-list @emailClicked="onEmailClicked" :emails="emailsByCategory" ></emails-list>
-        </div>
-        <div v-if="isEmailClicked" class="email-details">
-            <email-details @deleteEmail="onDeleteEmail" :email="selectedEmail" ></email-details>
-        </div>
+        <router-view @deleteEmail="onDeleteEmail"  :category="category"></router-view>
+     
         <div v-if="showCompose" class="compose-new-mail">
             <email-compose @exitCompose="ExitCompose" ></email-compose>
         </div>
@@ -59,19 +61,18 @@ export default {
         changeTypeOfList(type) {
             type === 'inbox' ? this.emailsByCategory = this.inboxEmails : this.emailsByCategory = this.sentEmails
             this.isEmailClicked = false
-            this.category = type
+            // this.category = type
+            // console.log(type);
 
         },
         ExitCompose() {
             this.showCompose = false
         },
-        onEmailClicked(email) {
-            this.isEmailClicked = true
-            this.selectedEmail = email
-            console.log(this.selectedEmail);
-
-
-        },
+        // onEmailClicked(email) {
+        //     // this.isEmailClicked = true
+        //     this.selectedEmail = email
+        //     console.log(this.selectedEmail);
+        // },
         onDeleteEmail(emailId) {
             emailService.deleteEmail(emailId, this.category).then((updatedEmails) => {
                 this.emailsByCategory = updatedEmails
@@ -81,4 +82,17 @@ export default {
     computed: {
 
     },
+    watch: {
+        '$route.path': function () {
+            if (this.$route.path === '/email/inbox') {
+                this.category = 'inbox'
+
+                // this.initInbox()
+
+            } else if (this.$route.path === '/email/sent') {
+                this.category = 'sent'
+                // this.initSent()
+            }
+        }
+    }
 }

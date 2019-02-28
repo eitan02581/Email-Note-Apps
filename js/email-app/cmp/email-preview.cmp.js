@@ -12,12 +12,17 @@ export default {
             </div>
             <div class="email-date">
                 {{email.sentAt}}
+                
             </div>
         </div>
     </section>
     `,
     methods: {
         // TODO: method for email body and subject for longs one
+
+        // unRead() {
+        //     this.$emit('setUnread', thisemail.id)
+        // }
     },
-    
+
 }

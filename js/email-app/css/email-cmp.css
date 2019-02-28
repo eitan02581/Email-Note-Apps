@@ -20,6 +20,7 @@
     height: 100%;
 }
 
+
 /* email-aside-cmp */
 .email-aside-wrapper {
     background-color: yellowgreen;
@@ -65,4 +66,10 @@
 /* email-details-cmp */
 .email-details-wrapper .email-container {
     border: solid 2px black;
+}
+
+/* email-list-cmp */
+
+.clicked {
+    background-color: aqua;
 }
