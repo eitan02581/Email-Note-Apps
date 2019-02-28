@@ -1,5 +1,7 @@
 import notePreview from './note-preview.cmp.js'
 import noteService from '../services/note-service.js'
+import noteEditor from '../cmp/note-editor.cmp.js'
+
 
 export default {
     template: `
@@ -18,12 +20,17 @@ export default {
             </note-preview>
             </div>
 
-            <div v-if="showEditor">editor component</div>
+            <div v-if="showEditor">
+                <div @click="closeModal" class="modal-container"></div>
+                <note-editor :noteFromFather="noteInEditor" @closeModal="closeModal"></note-editor>
+               
+            </div>
 
         </section> 
     `,
     components: {
         notePreview,
+        noteEditor,
     },
     data() {
         return {
@@ -39,7 +46,11 @@ export default {
         this.noteInEditor = note
         this.showEditor = true
 
-        }
+        },
+        closeModal(){
+            this.showEditor = false
+        },
+        
     },
     computed: {
         pinnedNotesOnly() {
