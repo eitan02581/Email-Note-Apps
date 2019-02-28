@@ -41,9 +41,20 @@ export default {
     },
     created() {
         var emailId = this.$route.params.emailId
+
         emailService.getEmailById(emailId, this.category).then((email) => {
             this.email = email
+            console.log(this.email);
+
         })
-        // this.$route.path
+        // this.$routes.path
+    },
+    watch: {
+        '$route.path': function () {
+            var emailId = this.$route.params.emailId
+            emailService.getEmailById(emailId, this.category).then((email) => {
+                this.email = email
+            })
+        }
     }
 }

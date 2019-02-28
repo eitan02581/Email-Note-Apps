@@ -72,6 +72,8 @@ function sendEmail(emailObj) {
         sentAt: Date.now(),
         isArchive: false
     })
+    console.log(gNextId );
+
     storageService.store('gSentEmails', gSentEmails);
 }
 
@@ -129,5 +131,5 @@ function emailClicked(emailId, category, setUnRead) {
     })
 
 
-    category === 'inbox' ? storageService.store('gInboxEmails', gInboxEmails) : storageService.store('gInboxEmails', gInboxEmails)
+    category === 'inbox' ? storageService.store('gInboxEmails', gInboxEmails) : storageService.store('gSentEmails', gSentEmails)
 }

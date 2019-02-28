@@ -37,7 +37,7 @@ export default {
                 emailService.sendEmail(this.emailObj);
                 setTimeout(() => {
                     this.onExitCompose()
-                }, 700)
+                }, 200)
             }
 
         }
