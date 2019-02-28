@@ -1,4 +1,5 @@
-import appsBox from './nav-bar-apps-box.cmp.js'
+import appsBox from './nav-bar-apps-box.cmp.js';
+// import emailService  
 export default {
     components: {
         appsBox
@@ -47,5 +48,7 @@ export default {
             return this.$route.path === '/' ? this.logo.keep : this.logo.email
         }
     },
-    created() {},
+    created() {
+
+    },
 }

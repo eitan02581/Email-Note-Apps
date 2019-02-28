@@ -1,3 +1,4 @@
+import storageService from '../../service/storage-service.js'
 export default {
     getInboxEmails,
     getSentEmails,
@@ -29,7 +30,30 @@ var gSentEmails = [{
     isRead: false,
     sentAt: Date.now(),
     isArchive: false
+}, {
+    id: 'e' + gNextId++,
+    subject: '2',
+    body: 'hey man ! how are you',
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false
+}, {
+    id: 'e' + gNextId++,
+    subject: '3',
+    body: 'hey man ! how are you',
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false
 }]
+
+
+loadEmailsFromStroage()
+
+function loadEmailsFromStroage() {
+    if (storageService.load('gInboxEmails')) gInboxEmails = storageService.load('gInboxEmails')
+    if (storageService.load('gSentEmails')) gSentEmails = storageService.load('gSentEmails')
+
+}
 
 function getInboxEmails() {
     return Promise.resolve(gInboxEmails)
@@ -41,13 +65,14 @@ function getSentEmails() {
 
 function sendEmail(emailObj) {
     gSentEmails.push({
-        id: 'n' + gNextId++,
+        id: 'e' + gNextId++,
         subject: emailObj.subject,
         body: emailObj.body,
         isRead: false,
         sentAt: Date.now(),
         isArchive: false
     })
+    storageService.store('gSentEmails', gSentEmails);
 }
 
 function deleteEmail(emailId, category) {
@@ -62,14 +87,18 @@ function deleteEmail(emailId, category) {
         updatedEmails = {
             ...gInboxEmails
         }
+        storageService.store('gInboxEmails', gInboxEmails);
+
     } else if (category === 'sent') {
         idx = gSentEmails.findIndex((email) => {
             return email.id === emailId
         })
         gSentEmails.splice(idx, 1)
         updatedEmails = {
-            ...gInboxEmails
+            ...gSentEmails
         }
+        storageService.store('gSentEmails', updatedEmails);
+
         // TODO: add more email options like archive.. 
     }
     return Promise.resolve(updatedEmails)
@@ -95,12 +124,10 @@ function emailClicked(emailId, category, setUnRead) {
     getEmailById(emailId, category).then((email) => {
         email = email
         if (setUnRead) {
-            console.log('setUNread');
-
             email.isRead = !email.isRead
         } else email.isRead = true
     })
 
 
-
+    category === 'inbox' ? storageService.store('gInboxEmails', gInboxEmails) : storageService.store('gInboxEmails', gInboxEmails)
 }

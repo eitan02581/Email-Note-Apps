@@ -13,23 +13,33 @@ export default {
     template: `
     <section class="emails-list-wrapper">
         <h1>emails-list</h1>
-        <router-link v-for="email  in emailsByCategory" :key="email.id" :to="'/email/'+category +'/' + email.id">
-            <div class="email-n-toolbar-wrapper">
+        <div class="email-list-filter">
+        {{filterMode}}
+            <select @change="onFilter" v-model="filterMode">
+                <option value="All">All</option>
+                <option value="Unread">Unread</option>
+                <option value="Read">Read</option>
+            </select>
+        </div>
+        <!--<router-link v-for="email  in emailsByCategory" :key="email.id" :to="'/email/'+category +'/' + email.id"> -->
+            <div v-for="email  in emailToShow" :key="email.id" class="email-n-toolbar-wrapper">
                 <email-preview @setUnread="setAsUnread" :class="{clicked: email.isRead}" @click.native="onEmailClicked(email)" :email="email" ></email-preview>
                 <div class="rigthToolbar">
                     <button @click="setAsUnread(email.id)" v-if="email.isRead">Mark as unread </button>
                     <button v-else @click="setAsUnread(email.id)" >Mark as read </button>
                 </div>
                 </div>
-        </router-link>
+        <!-- </router-link> -->
     </section>
     `,
     data() {
         return {
             inboxEmails: null,
             emailsByCategory: null,
+            emailToShow: null,
             category: 'inbox',
-            sentEmails: null
+            sentEmails: null,
+            filterMode: 'All'
         }
     },
 
@@ -40,13 +50,12 @@ export default {
         } else if (this.$route.path === '/email/sent') {
             this.initSent()
         }
+
     },
     computed: {},
     methods: {
         onEmailClicked(email) {
-            console.log('general click');
-
-            // this.$emit('emailClicked', email)
+            this.$router.push('/email/' + this.category + '/' + email.id)
             // // set diffenet color for clicked email
             emailService.emailClicked(email.id, this.category)
         },
@@ -60,6 +69,7 @@ export default {
                 this.inboxEmails = inbox
                 this.emailsByCategory = inbox
                 this.category = 'inbox'
+                this.emailToShow = inbox
             })
         },
         initSent() {
@@ -67,7 +77,26 @@ export default {
                 this.sentEmails = sent
                 this.emailsByCategory = sent
                 this.category = 'sent'
+                this.emailToShow = sent
+
             })
+        },
+        onFilter() {
+            var filterdEmails = []
+            if (this.filterMode === 'Unread') {
+                console.log('unread');
+
+                this.emailsByCategory.forEach((email) => {
+                    if (!email.isRead) return filterdEmails.push(email)
+                })
+            } else if (this.filterMode === 'Read') {
+                this.emailsByCategory.forEach((email) => {
+                    if (email.isRead) return filterdEmails.push(email)
+                })
+            } else if (this.filterMode === 'All') {
+                filterdEmails = this.emailsByCategory
+            }
+            this.emailToShow = filterdEmails
         }
     },
     watch: {

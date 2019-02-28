@@ -21,25 +21,25 @@ export default {
 
         </section> 
     `,
-     components:{
+    components: {
         noteService,
     },
     data() {
         return {
-           title:'',
-           text:'',
-           creatorActive:false,
+            title: '',
+            text: '',
+            creatorActive: false,
         }
     },
     methods: {
-        createNewNote(title,text){
-            noteService.createTextNote(title,text)
+        createNewNote(title, text) {
+            noteService.createTextNote(title, text)
         },
-        openCreator(){
+        openCreator() {
             this.creatorActive = true
             this.$nextTick(() => this.$refs.textInput.focus())
         }
     },
 
-   
+
 }
