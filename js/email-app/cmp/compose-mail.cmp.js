@@ -12,7 +12,7 @@ export default {
             <input  placeholder="To">
             <input  v-model="emailObj.body" placeholder="Subject">
             <textarea v-model="emailObj.subject" placeholder=""></textarea>
-            <button @click="onSendEmail" >Send</button>
+            <button  @click.prenvent="onSendEmail" >Send</button>
         </form>
            
         </div>
@@ -33,7 +33,10 @@ export default {
         },
         onSendEmail() {
             // TODO: MAKE VALIDATION css
-            if (this.emailObj.subject && this.emailObj.body) emailService.sendEmail(this.emailObj)
+            if (this.emailObj.subject && this.emailObj.body) emailService.sendEmail(this.emailObj);
+            setTimeout(() => {
+                onExitCompose()
+            }, 700)
 
         }
     },
