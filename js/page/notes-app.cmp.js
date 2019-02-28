@@ -4,8 +4,7 @@ import notesCreator from '../notes-app/cmp/notes-creator.js'
 export default {
     template: `
         <section class="notes-app-wrapper">
-            <h1>im notes app</h1>
-             <notes-creator/>
+             <notes-creator></notes-creator>
              <notes-list/>
         </section> 
     `,

@@ -4,11 +4,11 @@ export default {
     props:['note'],
     template: `
         <section class="note-preview-wrapper">
-            <div class="note" 
+            <div class="note" @click="emitToOpenEditor"
             :style="{ backgroundColor: colorForBackground}">
-                    <button class="pin" @click="togglePinNote"><i class="fas fa-thumbtack"></i></button>
+                    <button class="pin" @click.stop="togglePinNote"><i class="fas fa-thumbtack"></i></button>
                     <img :src="image" v-if="isImage"/>
-                    <div class="title">{{noteContentTiltle}}</div>
+                    <div   class="title">{{noteContentTiltle}}</div>
                     <div class="content">{{noteContentText}}</div>
                     <note-update-toolbar :fatherNote="note"></note-update-toolbar>
                 </div>
@@ -27,6 +27,10 @@ export default {
         togglePinNote(){
             this.note.pinned =  !this.note.pinned
             console.log('pinned:',this.note.pinned)
+        },
+        emitToOpenEditor(){
+            console.log('emiting')
+            this.$emit('openEditor',this.note)
         }
     },
     computed:{
@@ -53,6 +57,7 @@ export default {
         isImage(){
          return this.note.content.imageUrl
         },
+        
     },
    
 }
