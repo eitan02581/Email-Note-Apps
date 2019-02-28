@@ -61,3 +61,8 @@
 .email-compose-wrapper textarea {
     height: 340px;
 }
+
+/* email-details-cmp */
+.email-details-wrapper .email-container {
+    border: solid 2px black;
+}

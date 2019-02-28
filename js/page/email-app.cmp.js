@@ -3,10 +3,10 @@ import emailService from '../email-app/service/email-service.js'
 import emailAside from '../email-app/cmp/email-aside.cmp.js'
 import emailCompose from '../email-app/cmp/compose-mail.cmp.js'
 import emailDetails from '../email-app/cmp/email-details.cmp.js'
-import {
-    eventBus,
-    SHOW_EMAIL_DETAILS
-} from '../service/event-bus.js'
+// import {
+//     eventBus,
+//     SHOW_EMAIL_DETAILS
+// } from '../service/event-bus.js'
 export default {
     name: 'email-app',
     components: {
@@ -18,13 +18,13 @@ export default {
     template: `
     <section class="email-app-wrapper">
         <div class="aside">
-            <email-aside @showCompose="showCompose = true" @emailType="changeTypeOfList"></email-aside>
+            <email-aside @showCompose="showCompose = true" @emailType="changeTypeOfList "></email-aside>
         </div>
-        <div v-if="!isEmailClicked" class="email-list">
-             <emails-list :emails="emailType" ></emails-list>
+        <div  v-if="!isEmailClicked" class="email-list">
+             <emails-list @emailClicked="onEmailClicked" :emails="emailsByCategory" ></emails-list>
         </div>
         <div v-if="isEmailClicked" class="email-details">
-            <email-details></email-details>
+            <email-details @deleteEmail="onDeleteEmail" :email="selectedEmail" ></email-details>
         </div>
         <div v-if="showCompose" class="compose-new-mail">
             <email-compose @exitCompose="ExitCompose" ></email-compose>
@@ -33,33 +33,49 @@ export default {
     `,
     data() {
         return {
-            emailType: null,
+            emailsByCategory: null,
+            category: 'inbox',
             inboxEmails: null,
             sentEmails: null,
-            showCompose: true,
-            isEmailClicked: false
+            showCompose: false,
+            isEmailClicked: false,
+            selectedEmail: null,
         }
     },
     created() {
         emailService.getInboxEmails().then((inbox) => {
             this.inboxEmails = inbox
-            this.emailType = inbox
+            this.emailsByCategory = inbox
         })
         emailService.getSentEmails().then((sent) => {
-                this.sentEmails = sent
-            }),
-            eventBus.$on(SHOW_EMAIL_DETAILS, msg => {
-                console.log('got the msg', msg);
-                this.isEmailClicked = true
-            })
+            this.sentEmails = sent
+        })
+        // eventBus.$on(SHOW_EMAIL_DETAILS, msg => {
+        //     console.log('got the msg', msg);
+        //     this.isEmailClicked = true
+        // })
     },
     methods: {
         changeTypeOfList(type) {
-            type === 'inbox' ? this.emailType = this.inboxEmails : this.emailType = this.sentEmails
+            type === 'inbox' ? this.emailsByCategory = this.inboxEmails : this.emailsByCategory = this.sentEmails
             this.isEmailClicked = false
+            this.category = type
+
         },
         ExitCompose() {
             this.showCompose = false
+        },
+        onEmailClicked(email) {
+            this.isEmailClicked = true
+            this.selectedEmail = email
+            console.log(this.selectedEmail);
+
+
+        },
+        onDeleteEmail(emailId) {
+            emailService.deleteEmail(emailId, this.category).then((updatedEmails) => {
+                this.emailsByCategory = updatedEmails
+            })
         }
     },
     computed: {

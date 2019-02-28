@@ -19,4 +19,5 @@ export default {
     methods: {
         // TODO: method for email body and subject for longs one
     },
+    
 }
