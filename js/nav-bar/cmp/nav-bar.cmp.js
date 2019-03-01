@@ -18,11 +18,11 @@ export default {
                 </div>
             </div>
             <div  class="search-wrapper">
-                <input  @blur="closeSearchList"   v-model="searchValue"  placeholder="Search">
+                <input  v-model="searchValue"  placeholder="Search">
                 <div v-if="isSearchActive" class="filted-list">
                     <ul>    
                         <router-link @click.native="linkWasClicked" v-for="email in matched" :key="email.id" :to="'/email/' + category + '/' + email.id" >
-                            <li>{{email.subject}} - {{email.body}}</li>
+                            <li><div class="option">{{email.subject}} - {{email.body}}</div></li>
                         </router-link>
                         <li v-if="matched.length === 0">There are not recent records that match you search</li>
                     </ul>
@@ -34,7 +34,7 @@ export default {
                 </button>
             </div>
         </nav>   
-        <apps-Box  v-if="showAppBox"></apps-Box>
+        <apps-Box @closeBoxApp="closeBoxApp"  v-if="showAppBox"></apps-Box>
     </section>
     `,
     data() {
@@ -105,8 +105,9 @@ export default {
             }
             // if(this.matched.length === 0)  this.matched = 
         },
-        blured() {
-            console.log('asd');
+        closeBoxApp() {
+
+            this.showAppBox = false
 
         }
 

@@ -27,8 +27,6 @@ export default {
     },
     methods: {
         setCreatedTime() {
-            console.log(this.email.sentAt);
-
             var date = new Date(this.email.sentAt)
             var hours = date.getHours()
             var minutes = date.getMinutes()

@@ -82,15 +82,53 @@
 
 .nav-wrapper .filted-list {
     cursor: pointer;
-    border: solid 2px #673AB7;
+    /* border: solid 1px #f4f4f4; */
+    border-top: none;
     position: absolute;
     width: 100%;
-    background-color: yellow;
+    background-color: white;
+    z-index: 1;
+    transition: 0.3s;
+
+}
+
+.nav-wrapper .filted-list {
+    -webkit-box-shadow: 0px 15px 39px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 15px 39px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 15px 39px -7px rgba(0, 0, 0, 0.75);
+}
+
+.nav-wrapper .filted-list ul {
+    margin: 0;
+    margin-top: 2px;
+    padding: 0;
 }
 
 .nav-wrapper .filted-list ul li {
     width: 100%;
-    height: 21px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    height: 52px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-left: 10px;
+    transition: 0.3s;
+
+}
+
+.nav-wrapper .filted-list ul:last-child {
+    border: none;
+}
+
+.nav-wrapper .filted-list ul li:hover {
+    background-color: #cddbe3;
+    -webkit-box-shadow: -4px 0px 0px 0px #f44336;
+    -moz-box-shadow: -4px 0px 0px 0px #f44336;
+    box-shadow: -4px 0px 0px 0px #f44336;
+}
+
+.nav-wrapper .filted-list ul li .option {
+    height: 25px;
     overflow: hidden;
 }
 
@@ -100,9 +138,49 @@
     right: 0;
     width: 200px;
     height: 100px;
-    border: 1px solid #607d8b87;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
+    z-index: 1;
+    transition: 0.3s
+}
+
+.apps-wrapper:hover {
+    -webkit-box-shadow: -23px 29px 73px -43px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -23px 29px 73px -43px rgba(0, 0, 0, 0.75);
+    box-shadow: -23px 29px 73px -43px rgba(0, 0, 0, 0.75);
+
+}
+
+.apps-wrapper button {
+    background-color: unset;
+    border: solid 1px white;
+    transition: 0.3s;
+
+}
+
+.apps-wrapper .apps-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.apps-wrapper .apps-container .btn-wrapper {
+    display: flex;
+}
+
+.apps-wrapper button:hover {
+    transform: rotate(3deg);
+}
+
+.apps-wrapper img {
+    transition: 0.3s;
+}
+
+.email-app-loading{
+    background-color: bisque;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
 }

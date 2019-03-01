@@ -9,18 +9,18 @@ export default {
             <button @click="onExitCompose" >X</button>
         </div>
         <form >
-            <input  placeholder="To">
+            <input autofocus  v-model="emailObj.to" placeholder="To">
             <input  v-model="emailObj.body" placeholder="Subject">
             <textarea v-model="emailObj.subject" placeholder=""></textarea>
             <button  @click.prenvent.stop="onSendEmail" >Send</button>
         </form>
-           
         </div>
     </section>
     `,
     data() {
         return {
             emailObj: {
+                to: null,
                 subject: null,
                 body: null
             }
@@ -33,11 +33,9 @@ export default {
         },
         onSendEmail() {
             // TODO: MAKE VALIDATION css
-            if (this.emailObj.subject && this.emailObj.body) {
+            if (this.emailObj.to && this.emailObj.subject) {
                 emailService.sendEmail(this.emailObj);
-                setTimeout(() => {
-                    this.onExitCompose()
-                }, 200)
+                this.onExitCompose()
             }
 
         }

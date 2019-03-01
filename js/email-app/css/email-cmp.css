@@ -38,16 +38,24 @@
 
 }
 
+.email-n-toolbar-wrapper .rigth-toolbar {
+    width: 80px;
+    background-color: #f2f5f5cc;
+}
+
 .email-n-toolbar-wrapper .rigth-toolbar button {
     height: 100%;
     border: none;
     background-color: #f2f5f5cc;
+
 }
 
 .email-n-toolbar-wrapper .rigth-toolbar button i {
     transform: scale(2);
     color: #607d8b;
     cursor: pointer;
+    background-color: #f2f5f5cc;
+
 }
 
 
@@ -62,7 +70,6 @@
 .email-compose-wrapper {
     width: 500px;
     height: 500px;
-    background-color: blueviolet;
 
 }
 
@@ -71,6 +78,8 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding: 0 15px 0 15px;
+
 }
 
 .email-compose-wrapper .main-form {
@@ -79,10 +88,28 @@
 
 }
 
+.email-compose-wrapper form input {
+    border: none;
+    border-bottom: 1px solid #cfdee6;
+    height: 36px;
+    padding: 10px 0 10px 0;
+    font-size: 20px;
+}
+
+.email-compose-wrapper form textarea {
+    border: none
+}
+
 .email-compose-wrapper .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #202124;
+}
+
+.email-compose-wrapper .top h1 {
+
+    color: white;
 }
 
 .email-compose-wrapper .bottom {
@@ -102,7 +129,7 @@
 }
 
 .email-details-wrapper .email-container {
-    border: solid 2px black;
+    border: solid 1px #e3e3e3;
 }
 
 .email-details-wrapper .email-container h1 {
@@ -111,11 +138,35 @@
 
 .email-details-wrapper .email-container .top {
     position: fixed;
+    height: 50px;
+    display: flex;
+    display: flex;
+    width: 100%;
+    background-color: #00BCD4;
+    margin-top: -1px;
+
+
+}
+
+.email-details-wrapper .email-container .main {
+    margin-top: 60px;
+}
+
+
+.email-details-wrapper .email-container .top button {
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+}
+
+.email-details-wrapper .reply-form form {
+    display: flex;
+    flex-direction: column;
 }
 
 /* email-list-cmp */
 .emails-list-wrapper {
-    border: solid 2px yellowgreen;
+    border: solid 1px #e3e3e3;
     overflow: scroll;
     width: 100%;
 }

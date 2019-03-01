@@ -36,6 +36,31 @@ select:focus {
     outline: 0;
 }
 
+input:focus {
+    outline: 0;
+}
+
+textarea:focus {
+    outline: 0;
+    resize: none;
+
+}
+
 a {
     text-decoration: none;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #F44336;
 }
