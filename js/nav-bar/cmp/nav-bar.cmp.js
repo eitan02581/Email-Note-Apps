@@ -18,13 +18,13 @@ export default {
                 </div>
             </div>
             <div  class="search-wrapper">
-                <input     v-model="searchValue"  placeholder="Search">
-                {{isSearchActive}}
+                <input  @blur="closeSearchList"   v-model="searchValue"  placeholder="Search">
                 <div v-if="isSearchActive" class="filted-list">
                     <ul>    
-                        <router-link @click.native="linkWasClicked" v-for="item in matched" :to="'/email/' + category + '/' + item.id" >
-                            <li>{{item.subject}} - {{item.body}}</li>
+                        <router-link @click.native="linkWasClicked" v-for="email in matched" :key="email.id" :to="'/email/' + category + '/' + email.id" >
+                            <li>{{email.subject}} - {{email.body}}</li>
                         </router-link>
+                        <li v-if="matched.length === 0">There are not recent records that match you search</li>
                     </ul>
                 </div>
             </div>
@@ -54,6 +54,7 @@ export default {
     },
     methods: {
 
+
     },
     computed: {
         logObj() {
@@ -66,11 +67,8 @@ export default {
         })
         emailService.getSentEmails().then((sentEmails) => {
             this.sentEmails = sentEmails
-            // console.log(sentEmails);
 
         })
-
-        console.log(this.$route.path);
         var str = this.$route.path;
         // console.log(str);    
         // TODO: maybe a more specific condition is nedded (in case of more email filters)
@@ -83,6 +81,11 @@ export default {
         }
     },
     methods: {
+        closeSearchList() {
+            setTimeout(() => {
+                this.isSearchActive = false;
+            }, 200);
+        },
         linkWasClicked() {
             setTimeout(() => {
                 this.isSearchActive = false
@@ -94,14 +97,10 @@ export default {
 
             if (this.category === 'inbox') {
                 matchedEmails = this.inboxEmails.filter(email => email.subject.includes(this.searchValue) || email.body.includes(this.searchValue))
-                console.log(this.inboxEmails);
                 this.matched = matchedEmails
-                console.log(this.matched);
 
             } else if (this.category === 'sent') {
-                console.log(this.sentEmails);
                 matchedEmails = this.sentEmails.filter(email => email.subject.includes(this.searchValue) || email.body.includes(this.searchValue))
-                console.log(this.matched);
                 this.matched = matchedEmails
             }
             // if(this.matched.length === 0)  this.matched = 
@@ -119,8 +118,6 @@ export default {
             this.isSearchActive = false
             this.matched = null;
             var res = /\/email\/inbox/.test(str);
-            console.log(this.matched);
-
             // TODO: maybe a more specific condition is nedded (in case of more email filters)
             // if (this.$route.path === '/email/inbox') {
             //     this.category = 'inbox'

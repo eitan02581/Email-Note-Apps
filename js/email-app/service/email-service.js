@@ -1,4 +1,5 @@
 import storageService from '../../service/storage-service.js'
+import utilService from '../../service/util.js'
 export default {
     getInboxEmails,
     getSentEmails,
@@ -7,16 +8,15 @@ export default {
     getEmailById,
     emailClicked
 }
-var gNextId = 0
 var gInboxEmails = [{
-    id: 'e' + gNextId++,
+    id: utilService.idGenerator(),
     subject: 'subscription',
     body: 'hey eitan ! ,loremloremloremloremloremloremloremloremloremloremlorem',
     isRead: false,
     sentAt: Date.now(),
     isArchive: false
 }, {
-    id: 'e' + gNextId++,
+    id: utilService.idGenerator(),
     subject: '2',
     body: 'hey 2 ! , if you want...',
     isRead: false,
@@ -24,21 +24,21 @@ var gInboxEmails = [{
     isArchive: false
 }]
 var gSentEmails = [{
-    id: 'e' + gNextId++,
-    subject: 'sent From me',
-    body: 'hey man ! how are you',
+    id: utilService.idGenerator(),
+    subject: 'Eitan, you have a new suggested connection to review',
+    body: 'hey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are youhey man ! how are you',
     isRead: false,
     sentAt: Date.now(),
     isArchive: false
 }, {
-    id: 'e' + gNextId++,
+    id: utilService.idGenerator(),
     subject: '2',
     body: 'hey man ! how are you',
     isRead: false,
     sentAt: Date.now(),
     isArchive: false
 }, {
-    id: 'e' + gNextId++,
+    id: utilService.idGenerator(),
     subject: '3',
     body: 'hey man ! how are you',
     isRead: false,
@@ -65,15 +65,13 @@ function getSentEmails() {
 
 function sendEmail(emailObj) {
     gSentEmails.push({
-        id: 'e' + gNextId++,
+        id: utilService.idGenerator(),
         subject: emailObj.subject,
         body: emailObj.body,
         isRead: false,
         sentAt: Date.now(),
         isArchive: false
     })
-    console.log(gNextId );
-
     storageService.store('gSentEmails', gSentEmails);
 }
 
@@ -99,7 +97,7 @@ function deleteEmail(emailId, category) {
         updatedEmails = {
             ...gSentEmails
         }
-        storageService.store('gSentEmails', updatedEmails);
+        storageService.store('gSentEmails', gSentEmails);
 
         // TODO: add more email options like archive.. 
     }
@@ -108,12 +106,16 @@ function deleteEmail(emailId, category) {
 
 function getEmailById(emailId, category) {
     var email
+    console.log(emailId, category);
+
     if (category === 'inbox') {
         email = gInboxEmails.find((email) => {
             return email.id === emailId
         })
+
     } else if (category === 'sent') {
         email = gSentEmails.find((email) => {
+            console.log(email);
             return email.id === emailId
         })
     }
@@ -129,7 +131,8 @@ function emailClicked(emailId, category, setUnRead) {
             email.isRead = !email.isRead
         } else email.isRead = true
     })
+    console.log('clicked!!');
 
-
-    category === 'inbox' ? storageService.store('gInboxEmails', gInboxEmails) : storageService.store('gSentEmails', gSentEmails)
+    storageService.store('gInboxEmails', gInboxEmails);
+    storageService.store('gSentEmails', gSentEmails);
 }

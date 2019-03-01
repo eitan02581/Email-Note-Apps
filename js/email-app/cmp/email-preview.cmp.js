@@ -11,18 +11,30 @@ export default {
                  {{email.body}}
             </div>
             <div class="email-date">
-                {{email.sentAt}}
+                {{sentAt}}
                 
             </div>
         </div>
     </section>
     `,
+    data() {
+        return {
+            sentAt: null
+        }
+    },
+    created() {
+        this.setCreatedTime()
+    },
     methods: {
-        // TODO: method for email body and subject for longs one
+        setCreatedTime() {
+            console.log(this.email.sentAt);
 
-        // unRead() {
-        //     this.$emit('setUnread', thisemail.id)
-        // }
+            var date = new Date(this.email.sentAt)
+            var hours = date.getHours()
+            var minutes = date.getMinutes()
+            var clock = `${hours}:${minutes}`
+            this.sentAt = clock
+        }
     },
 
 }

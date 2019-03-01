@@ -7,7 +7,7 @@ export default {
                 <button @click="onComposeBtn">+ Compose</button> 
             </div>
             <div class="inbox-btn">
-                 <router-link @click="onTypeOfMails('inbox')" to="/email/inbox">Inbox</router-link>
+                 <router-link @click="onTypeOfMails('inbox')" to="/email/inbox"> Inbox</router-link>
             </div>
             <div class="sent-btn">
                 <router-link @click="onTypeOfMails('sent')" to="/email/sent">sent</router-link>

@@ -7,18 +7,25 @@ import {
 
 export default {
     name: 'email-details',
-    props: ['category'],
+    // props: ['category'],
     components: {
         emailToolbar
     },
     template: `
     <section class="email-details-wrapper" v-if="email">
-        <button @click="back">Back</button>
-        <button @click="deleteEmail"> <i class="far fa-trash-alt"></i></button>
-        <h1>email details</h1>
         <div class="email-container">
-            <div>{{email.subject}}</div>
-            <div>{{email.body}}</div>
+            <div class="top">
+                <button @click="back">Back</button>
+                <button @click="deleteEmail"> <i class="far fa-trash-alt"></i></button>
+            </div>
+            <div class="main">
+                <h1>{{email.subject}}</h1>
+                <p>{{email.body}}</p>
+            </div>
+            <div class="bottom">
+                <button>Reply</button>
+                <button>Forward</button>
+            </div>
         </div>
     </section>
     `,
@@ -37,11 +44,21 @@ export default {
         },
         back() {
             this.$router.go(-1);
+        },
+        setCategory() {
+            var path = this.$route.path;
+            var res = /\/email\/inbox/.test(path);
+            console.log(res);
+            if (res) {
+                this.category = 'inbox'
+            } else {
+                this.category = 'sent'
+            }
         }
     },
     created() {
         var emailId = this.$route.params.emailId
-
+        this.setCategory()
         emailService.getEmailById(emailId, this.category).then((email) => {
             this.email = email
             console.log(this.email);
@@ -51,7 +68,9 @@ export default {
     },
     watch: {
         '$route.path': function () {
+            this.setCategory()
             var emailId = this.$route.params.emailId
+
             emailService.getEmailById(emailId, this.category).then((email) => {
                 this.email = email
             })

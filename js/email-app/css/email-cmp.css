@@ -1,13 +1,15 @@
 /* email-preview-cmp */
+.email-n-toolbar-wrapper {
+    display: flex;
+}
 
 .email-preview-wrapper {
-    width: 1070px;
     height: 40px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #f2f5f5cc;
-    margin: 10px;
     padding: 10px;
     cursor: pointer;
 }
@@ -20,11 +22,40 @@
     height: 100%;
 }
 
+.email-preview-wrapper .email-container .email-subject {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin-right: 20px;
+
+}
+
+.email-preview-wrapper .email-container .email-body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    margin-right: 20px;
+
+}
+
+.email-n-toolbar-wrapper .rigth-toolbar button {
+    height: 100%;
+    border: none;
+    background-color: #f2f5f5cc;
+}
+
+.email-n-toolbar-wrapper .rigth-toolbar button i {
+    transform: scale(2);
+    color: #607d8b;
+    cursor: pointer;
+}
+
+
 
 /* email-aside-cmp */
 .email-aside-wrapper {
-    background-color: yellowgreen;
     width: 200px;
+    height: 100%;
 }
 
 /* email-compose-cmp */
@@ -64,12 +95,48 @@
 }
 
 /* email-details-cmp */
+.email-details-wrapper {
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+}
+
 .email-details-wrapper .email-container {
     border: solid 2px black;
 }
 
+.email-details-wrapper .email-container h1 {
+    font-size: 1.35em;
+}
+
+.email-details-wrapper .email-container .top {
+    position: fixed;
+}
+
 /* email-list-cmp */
+.emails-list-wrapper {
+    border: solid 2px yellowgreen;
+    overflow: scroll;
+    width: 100%;
+}
+
+.emails-list-wrapper .filter-wrapper {
+    display: flex;
+    justify-content: space-between;
+    background-color: #F44336;
+
+}
+
+.emails-list-wrapper .filter-wrapper select {
+    color: white;
+    background-color: #f44336;
+    height: 50px;
+    width: 110px;
+    font-size: 21px;
+    cursor: pointer;
+    border: none;
+}
 
 .clicked {
-    background-color: aqua;
+    background-color: #cfdee6;
 }
