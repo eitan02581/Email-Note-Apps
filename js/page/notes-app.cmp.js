@@ -12,13 +12,4 @@ export default {
         notesList,
         notesCreator,
     },
-    data() {
-        return {
-           
-        }
-    },
-    methods: {
-       
-    },
-   
 }
