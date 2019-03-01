@@ -33,19 +33,15 @@ export default {
     methods: {
         togglePinNote() {
             this.note.pinned = !this.note.pinned
-            console.log('pinned:', this.note.pinned)
         },
         emitTocloseModal() {
-            console.log('emiting')
             this.$emit('closeModal')
         },
         updateText(){
-            console.log('updating text')
-this.noteFromFather.content.text = this.inputText
+            this.noteFromFather.content.text = this.inputText
         },
         updateTitle(){
-            console.log('updating text')
-this.noteFromFather.content.title = this.inputTitle
+            this.noteFromFather.content.title = this.inputTitle
         },
 
     },

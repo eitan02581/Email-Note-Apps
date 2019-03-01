@@ -1,8 +1,10 @@
-import storageService from '../../service/storage-service.js'
+'use strict'
+/*
+NOTE SERVICE - NOTES DATABASE & C.R.U.D FUNCTIONS ARE HERE!
+*/
 
 export default {
     getNotes,
-    getArchiveNotes,
     createTextNote,
     deleteNoteByid,
     updateImage,
@@ -11,18 +13,16 @@ export default {
   
 }
 
-function getNotes() {
-    return gNotes
+//(private functions and variables)//
+var _nextId = 3
+function _getNoteById(id){
+    return gNotes.find((note)=>note.id===id)
 }
 
-function getArchiveNotes() {
-
-}
-var gNextId = 3
-
+///C.-CREATE funtcions///
 function createTextNote(newTitle,newText){
     var newNote =  {
-        id: 'N' + gNextId++,
+        id: 'N' + _nextId++,
         createdAt: Date.now(),
         archive: false,
         pinned: false,
@@ -34,28 +34,35 @@ function createTextNote(newTitle,newText){
         backgroundColor: 'white',
     }
     gNotes.push(newNote)
-    console.log('note created!',gNotes)
 }
-
-function deleteNoteByid(noteId){
-    var deleteIdx = gNotes.findIndex((note)=>note.id === noteId)
-    gNotes.splice(deleteIdx,1)
+///R.-READ funtcions///
+function getNotes() {
+    return gNotes
 }
+///U.-UPDATE funtcions///
 function toggleArchiveById(noteId){
-   var currNote = _getNoteById(noteId)
-   currNote.archive = !currNote.archive
+    var currNote = _getNoteById(noteId)
+    currNote.archive = !currNote.archive
 }
-
 function updateImage(id,imageUrl){
     var note = _getNoteById(id)
     note.content.imageUrl = imageUrl
 }
-
 function updateBackgroundColor(noteId,color){
     var note = _getNoteById(noteId)
     note.backgroundColor = color
 }
+///D.-DELETE funtcions///
+function deleteNoteByid(noteId){
+    var deleteIdx = gNotes.findIndex((note)=>note.id === noteId)
+    gNotes.splice(deleteIdx,1)
+}
 
+
+
+
+
+//_The notes database itself: 
 var gNotes = [{
         id: 'N1',
         createdAt: 1551259417463,
@@ -82,6 +89,3 @@ var gNotes = [{
     }
 ]
 
-function _getNoteById(id){
-   return gNotes.find((note)=>note.id===id)
-}
