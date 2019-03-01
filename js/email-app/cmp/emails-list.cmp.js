@@ -21,8 +21,14 @@ export default {
                 <option value="Read">Read</option>
             </select>
         </div>
+        <div class="email-sort-list">
+            <select @click="onSort" v-model="sortMode">
+                <option value="Date">Date</option>
+                <option value="Title">Title</option>
+            </select>
+        </div>
         <!--<router-link v-for="email  in emailsByCategory" :key="email.id" :to="'/email/'+category +'/' + email.id"> -->
-            <div v-for="email  in emailToShow" :key="email.id" class="email-n-toolbar-wrapper">
+        <div v-for="email  in emailToShow" :key="email.id" class="email-n-toolbar-wrapper">
                 <email-preview @setUnread="setAsUnread" :class="{clicked: email.isRead}" @click.native="onEmailClicked(email)" :email="email" ></email-preview>
                 <div class="rigthToolbar">
                     <button @click="setAsUnread(email.id)" v-if="email.isRead">Mark as unread </button>
@@ -35,11 +41,12 @@ export default {
     data() {
         return {
             inboxEmails: null,
+            sentEmails: null,
             emailsByCategory: null,
             emailToShow: null,
             category: 'inbox',
-            sentEmails: null,
-            filterMode: 'All'
+            filterMode: 'All',
+            sortMode: 'Date'
         }
     },
 
@@ -81,6 +88,7 @@ export default {
 
             })
         },
+        // TODO: ON READ OR UNREAD CLICKED , PUT THEM IN THE RIGHT PLACE
         onFilter() {
             var filterdEmails = []
             if (this.filterMode === 'Unread') {
@@ -97,6 +105,19 @@ export default {
                 filterdEmails = this.emailsByCategory
             }
             this.emailToShow = filterdEmails
+        },
+        onSort() {
+            // objs.sort((a,b) => (a.last_nom > b.last_nom) ? 1 : ((b.last_nom > a.last_nom) ? -1 : 0)); 
+
+            console.log('asd');
+            if (this.sortMode === 'Date') {
+
+                this.emailsByCategory.sort((first, second) => (first.sentAt > second.sentAt) ? 1 : ((second.sentAt > first.sentAt) ? -1 : 0))
+            } else if (this.sortMode === 'Title') {
+                this.emailsByCategory.sort((first, second) => (first.subject > second.subject) ? 1 : ((second.subject > first.subject) ? -1 : 0))
+            }
+            this.emailToShow = this.emailsByCategory
+
         }
     },
     watch: {
