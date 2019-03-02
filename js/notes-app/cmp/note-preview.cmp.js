@@ -1,39 +1,90 @@
 import noteUpdateToolbar from './note-update-toolbar.cmp.js'
+import contentTodo from './todos.cmp.js'
 
 export default {
     props:['note'],
     template: `
         <section class="note-preview-wrapper">
-            <div class="note" @click="emitToOpenEditor"
-            :style="{ backgroundColor: colorForBackground}">
-                    <button class="pin" @click.stop="togglePinNote"><i class="fas fa-thumbtack"></i></button>
-                    <img :src="image" v-if="isImage"/>
-                    <div   class="title">{{noteContentTiltle}}</div>
-                    <div class="content">{{noteContentText}}</div>
-                    <note-update-toolbar :fatherNote="note"></note-update-toolbar>
+        <div class="note" 
+            @click="emitToOpenEditor"
+            :style="{ backgroundColor: noteBackgroundColor}">
+
+                <button 
+                 class="pin" 
+                 @click.stop="togglePinNote">
+                    <i class="fas fa-thumbtack"></i>
+                </button>
+
+                <img 
+                 v-if="isContentImage"
+                 :src="noteContentImageUrl" 
+                />
+
+                <div 
+                 class="title">
+                    {{noteContentTiltle}}
                 </div>
-            </div> 
+
+                <div 
+                 class="content">
+
+                <template v-if="contentContainsTodos">
+                <ul>
+                    <li v-for="(todo,index) in noteContentUndoneTodos" >
+                        <content-todo :noteTodo="todo"></content-todo>
+                    </li>
+                </ul>
+
+                <hr v-if="noteContentDoneTodos.length">
+                <ul>
+                    <li v-for="(todo,index) in noteContentDoneTodos" >
+                        <content-todo :noteTodo="todo"></content-todo>
+                    </li>
+                </ul>
+                </template>
+
+                    {{noteContentText}}
+
+                </div>
+
+                <note-update-toolbar 
+                    :fatherNote="note"
+                    :noteId="note.id">
+                </note-update-toolbar>
+
+            </div>
+        </div> 
         </section> 
     `,
      components:{
         noteUpdateToolbar,
+        contentTodo,
    },
-    data() {
+   data() {
         return {
-           
+          
         }
     },
     methods: {
         togglePinNote(){
             this.note.pinned =  !this.note.pinned
-            console.log('pinned:',this.note.pinned)
         },
         emitToOpenEditor(){
-            console.log('emiting')
             this.$emit('openEditor',this.note)
-        }
+        },
     },
     computed:{
+        contentContainsTodos(){
+            return this.note.content.todos
+        },
+        noteContentUndoneTodos(){
+            if(this.note.content.todos)
+            return this.note.content.todos.filter(todo => todo.isDone === false);
+        },
+        noteContentDoneTodos(){
+            if(this.note.content.todos)
+            return this.note.content.todos.filter(todo => todo.isDone === true);
+        },
         noteContentTiltle(){
             return this.note.content.title
         },
@@ -48,13 +99,13 @@ export default {
            var clock = `${hours}:${minutes}:${seconds}`
         return clock
         },
-        image(){
+        noteContentImageUrl(){
             return this.note.content.imageUrl
         },
-        colorForBackground(){
+        noteBackgroundColor(){
             return this.note.backgroundColor
         },
-        isImage(){
+        isContentImage(){
          return this.note.content.imageUrl
         },
         

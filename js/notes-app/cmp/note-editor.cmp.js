@@ -1,4 +1,6 @@
 import noteUpdateToolbar from './note-update-toolbar.cmp.js'
+import contentTodo from './todos.cmp.js'
+
 
 export default {
     props: ['noteFromFather'],
@@ -6,24 +8,99 @@ export default {
         <section ref="modal" class="note-editor-wrapper"
             :style="{ backgroundColor: colorForBackground}">
 
-            <button class="pin" @click.stop="togglePinNote"><i class="fas fa-thumbtack"></i></button>
-            <img :src="image" v-if="isImage"/>
-            <input placeholder="Title" class="title" name="title" type="text" v-model="inputTitle" @input="updateTitle">
-            <input placeholder="Note" class="text" name="text" type="text" v-model="inputText" @input="updateText">
-            <div class="details">created at: {{noteCreatedAt}}</div>
-            <note-update-toolbar :fatherNote="note"></note-update-toolbar>
-            <button @click="emitTocloseModal">close</button>
+            <button 
+             class="pin" 
+             @click.stop="togglePinNote">
+                <i class="fas fa-thumbtack"></i>
+            </button>
+
+            <img 
+             :src="image" 
+             v-if="isImage"/>
+             
+            <input 
+             placeholder="Title" 
+             class="title" 
+             name="title" 
+             type="text" 
+             v-model="inputTitle" 
+             @input="updateTitle"
+            >
+
+            <template v-if="contentContainsTodos">
+                <ul>
+                    <li v-for="(todo) in noteContentUndoneTodos" >
+                        <content-todo 
+                        :noteTodo="todo"
+                        :noteId="note.id">
+                    </content-todo>
+                    </li>
+                </ul>
+
+                <hr v-if="noteContentDoneTodos.length">
+                <ul>
+                    <li v-for="(todo) in noteContentDoneTodos" >
+                        <content-todo 
+                        :noteTodo="todo" 
+                        :noteId="note.id">
+                    </content-todo>
+                    </li>
+                </ul>
+            
+
+                <div class="add-todo">
+                    <button 
+                    @click="pushNewTodo" >
+                        <i class="fas fa-plus"></i>
+                    </button>
+                
+                    <input
+                    placeholder="List item" 
+                    type="text"
+                    v-model="newTodo" 
+                    >
+                </div>
+
+            </template>
+
+                <!-- relate to non-todo note -->
+            <input
+             v-if="!contentContainsTodos" 
+             placeholder="Note" 
+             class="text" 
+             name="text" 
+             type="text" 
+             v-model="inputText" 
+             @input="updateText"
+            >
+            
+            <div 
+             class="details">
+                created at: {{noteCreatedAt}}
+            </div>
+
+            <note-update-toolbar 
+             :fatherNote="note" 
+             :noteId="note.id">
+            </note-update-toolbar>
+
+            <button 
+             @click="emitTocloseModal">
+                close
+            </button>
        
         </section> 
     `,
     components: {
         noteUpdateToolbar,
+        contentTodo,
     },
     data() {
         return {
             note: this.noteFromFather,
             inputText: null,
             inputTitle: null,
+            newTodo:null,
         }
     },
     created: function () {
@@ -43,9 +120,25 @@ export default {
         updateTitle(){
             this.noteFromFather.content.title = this.inputTitle
         },
+        pushNewTodo(){
+            this.$emit('createNewTodo',this.newTodo,this.note.id)
+            this.newTodo = null
+            console.log(this.note)
+        }
 
     },
     computed: {
+        contentContainsTodos(){
+            return this.note.content.todos
+        },
+        noteContentUndoneTodos(){
+            if(this.note.content.todos)
+            return this.note.content.todos.filter(todo => todo.isDone === false);
+        },
+        noteContentDoneTodos(){
+            if(this.note.content.todos)
+            return this.note.content.todos.filter(todo => todo.isDone === true);
+        },
         noteContentTiltle() {
             return this.note.content.title
         },
