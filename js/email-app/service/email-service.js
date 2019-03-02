@@ -111,6 +111,7 @@ function sendEmail(emailObj) {
         body: emailObj.body,
         isRead: false,
         sentAt: Date.now(),
+        isStarred: false,
         isArchive: false
     })
     storageService.store('gSentEmails', gSentEmails);

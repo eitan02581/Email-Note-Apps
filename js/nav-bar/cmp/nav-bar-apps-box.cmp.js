@@ -25,10 +25,10 @@ export default {
 
     created() {
         // TODO: CHECK WHY EVENT BUS DONT WORK
-        eventBus.$on(SHOW_EMAIL_TO_READ, msg => {
-            console.log('got the msg', msg);
-            this.emailsLeftToRead = msg
-        })
+        // eventBus.$on(SHOW_EMAIL_TO_READ, msg => {
+        //     console.log('got the msg', msg);
+        //     this.emailsLeftToRead = msg
+        // })
     },
     methods: {
         onKeep() {

@@ -4,7 +4,7 @@
 }
 
 .email-preview-wrapper {
-    height: 40px;
+    height: 46px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -70,8 +70,20 @@
 .email-compose-wrapper {
     width: 500px;
     height: 500px;
+    margin: 0 auto;
+    -webkit-box-shadow: 0px -1px 45px -15px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px -1px 45px -15px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px -1px 45px -15px rgba(0, 0, 0, 0.75);
+    background-color: white;
+
 
 }
+
+/* .email-compose-wrapper:active {
+    -webkit-box-shadow: 0px 1px 21px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 1px 21px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 1px 21px 0px rgba(0, 0, 0, 0.75);
+} */
 
 .email-compose-wrapper form {
     width: 100%;
@@ -83,9 +95,26 @@
 }
 
 .email-compose-wrapper .main-form {
+    height: 355px;
     display: flex;
     flex-direction: column;
+}
 
+.email-compose-wrapper form button {
+    width: 72px;
+    height: 36px;
+    border: none;
+    background-color: #1a73e8;
+    font-size: 17px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.email-compose-wrapper form button:hover {
+    border-radius: 5px;
+
+    background-color: #1a73e8bf;
 }
 
 .email-compose-wrapper form input {
@@ -105,6 +134,22 @@
     justify-content: space-between;
     align-items: center;
     background-color: #202124;
+}
+
+.email-compose-wrapper .top h1 {
+    margin-left: 17px;
+}
+
+.email-compose-wrapper .top button {
+    background-color: unset;
+    border: none;
+    color: white;
+    margin-right: 18px;
+    cursor: pointer;
+}
+
+.email-compose-wrapper .top button i {
+    color: white;
 }
 
 .email-compose-wrapper .top h1 {
@@ -142,7 +187,7 @@
     display: flex;
     display: flex;
     width: 100%;
-    background-color: #00BCD4;
+    background-color: #F44336;
     margin-top: -1px;
 
 
@@ -152,6 +197,10 @@
     margin-top: 60px;
 }
 
+.email-details-wrapper .email-container .top button:first-child {
+    font-size: 20px;
+    color: white;
+}
 
 .email-details-wrapper .email-container .top button {
     border: none;
@@ -159,14 +208,99 @@
     cursor: pointer;
 }
 
+.email-details-wrapper .email-container .top button i {
+    color: white;
+    transition: 0.3s;
+
+}
+
+.email-details-wrapper .email-container .top button i:hover {
+    color: #eccdcd;
+    transform: rotate(15deg)
+}
+
+.email-details-wrapper .email-container .form-n-btn-wrapper {}
+
+.email-details-wrapper .email-container .form-n-btn-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.email-details-wrapper .email-container .form-n-btn-container input {
+    border: none;
+    border-bottom: 1px solid #cfdee6;
+    height: 36px;
+    padding: 10px 0 10px 10px;
+    font-size: 20px;
+    margin: 0 15px 0 8px;
+
+}
+
+.email-details-wrapper .email-container .form-n-btn-container textarea {
+    height: 100px;
+    border: none;
+    margin: 15px;
+}
+
+.email-details-wrapper .email-container .form-n-btn-container form button {
+    width: 72px;
+    height: 36px;
+    border: none;
+    background-color: #1a73e8;
+    font-size: 17px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 15px;
+}
+
+.email-details-wrapper .email-container .form-n-btn-container form button:hover {
+    border-radius: 5px;
+
+    background-color: #1a73e8bf;
+}
+
 .email-details-wrapper .reply-form form {
     display: flex;
     flex-direction: column;
+    border-radius: 21px;
+
+    -webkit-box-shadow: 0px -5px 63px -20px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px -5px 63px -20px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px -5px 63px -20px rgba(0, 0, 0, 0.75);
 }
+
+.email-details-wrapper .reply-form form h3 {
+    margin: 15px;
+}
+
+.email-details-wrapper .bottom {
+    margin-top: 15px;
+}
+
+.email-details-wrapper .bottom button {
+    width: 100px;
+    height: 36px;
+    border: none;
+    background-color: #ffffff;
+    font-size: 17px;
+    color: black;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid #a6a6a6;
+    border-radius: 3px;
+}
+
+.email-details-wrapper .bottom button:hover {
+    background-color: #c4c4c4;
+
+}
+
+
 
 /* email-list-cmp */
 .emails-list-wrapper {
-    border: solid 1px #e3e3e3;
+    border: solid 1px #c4c4c4;
     overflow: scroll;
     width: 100%;
 }

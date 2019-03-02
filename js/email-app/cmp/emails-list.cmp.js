@@ -111,7 +111,6 @@ export default {
                 this.filterdEmails = starred
             })
         },
-        // TODO: ON READ OR UNREAD CLICKED , PUT THEM IN THE RIGHT PLACE
         onFilter() {
             this.filterdEmails = []
             if (this.filterMode === 'Unread') {
@@ -146,6 +145,7 @@ export default {
             eventBus.$emit('SHOW_EMAIL_TO_READ', counter)
         },
         toggleStarred(email) {
+            console.log(email);
             email.isStarred = !email.isStarred
             emailService.storeEmails()
         }

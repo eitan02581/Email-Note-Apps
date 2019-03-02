@@ -21,27 +21,30 @@ export default {
                 <button><i class="fas fa-ban fa-2x"></i></button>
             </div>
             <div class="main">
-
                 <h1>{{email.subject}}</h1>
                 <h6 v-if="email.from"> From: <{{email.from}}></h6>
                 <h6 v-if="email.to"> To: <{{email.to}}></h6>
                 <p>{{email.body}}</p>
             </div>
-            <div v-if="state" class="reply-form">
-                <form >
-                    <h3 v-if="state === 'reply' && email.from ">To:  <{{ email.from}}> </h3>
-                    <h3 v-else-if="state === 'reply'">To:  <{{email.to}}> </h3>
-                    <h3 v-if="state === 'forward'">To:  <{{emailObj.to}}> </h3>
-                    <input autofocus v-model="emailObj.to" placeholder="To">
-                    <input  v-model="emailObj.body" placeholder="Subject">
-                    <textarea v-model="emailObj.subject" placeholder=""></textarea>
-                    <button  @click.prenvent.stop="onSendEmail" >Send</button>
-               </form>
-            </div>
-            <div class="bottom">
-                <button @click="onReply" >Reply</button>
-                <button  @click="onForward">Forward</button>
-                <button @click="state = false" v-if="state"><i class="far fa-trash-alt"></i></button>
+            <div class="form-n-btn-wrapper">
+                <div class="form-n-btn-container">
+                    <div v-if="state" class="reply-form">
+                        <form >
+                            <h3 v-if="state === 'reply' && email.from ">To:  <{{ email.from}}> </h3>
+                            <h3 v-else-if="state === 'reply'">To:  <{{email.to}}> </h3>
+                            <h3 v-if="state === 'forward'">To:  <{{emailObj.to}}> </h3>
+                            <input autofocus v-model="emailObj.to" placeholder="To">
+                            <input  v-model="emailObj.body" placeholder="Subject">
+                            <textarea v-model="emailObj.subject" placeholder=""></textarea>
+                            <button  @click.prenvent.stop="onSendEmail" >Send</button>
+                    </form>
+                    </div>
+                    <div class="bottom">
+                        <button @click="onReply" > <i class="fas fa-reply"></i>Reply</button>
+                        <button  @click="onForward">Forward <i class="fas fa-arrow-right"></i></button>
+                        <button @click="state = false" v-if="state"><i class="far fa-trash-alt"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -80,9 +83,9 @@ export default {
         },
         onSendEmail() {
             // TODO: MAKE VALIDATION css
-            if (this.emailObj.to && this.emailObj.subject) {
+            if (this.emailObj.to) {
                 emailService.sendEmail(this.emailObj);
-                this.showReplay = false
+                this.state = false
             }
 
         },

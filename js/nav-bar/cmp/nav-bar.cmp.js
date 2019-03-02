@@ -9,7 +9,7 @@ export default {
         <nav>
             <div class="logo-ham-container">
                 <div class="hamburger-wrapper">
-                    <button>
+                    <button @click="onHam">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/VisualEditor_-_Icon_-_Menu.svg/768px-VisualEditor_-_Icon_-_Menu.svg.png">
                     </button>
                 </div>
@@ -18,7 +18,7 @@ export default {
                 </div>
             </div>
             <div  class="search-wrapper">
-                <input  v-model="searchValue"  placeholder="Search">
+                <input @blur="closeSearchList" v-model="searchValue"  placeholder="Search">
                 <div v-if="isSearchActive" class="filted-list">
                     <ul>    
                         <router-link @click.native="linkWasClicked" v-for="email in matched" :key="email.id" :to="'/email/' + category + '/' + email.id" >
@@ -34,7 +34,9 @@ export default {
                 </button>
             </div>
         </nav>   
-        <apps-Box @closeBoxApp="closeBoxApp"  v-if="showAppBox"></apps-Box>
+        <transition>
+            <apps-Box @closeBoxApp="closeBoxApp"  v-if="showAppBox"></apps-Box>
+        </transition>
     </section>
     `,
     data() {
@@ -51,10 +53,6 @@ export default {
             matched: null,
             isSearchActive: false
         }
-    },
-    methods: {
-
-
     },
     computed: {
         logObj() {
@@ -103,12 +101,14 @@ export default {
                 matchedEmails = this.sentEmails.filter(email => email.subject.includes(this.searchValue) || email.body.includes(this.searchValue))
                 this.matched = matchedEmails
             }
-            // if(this.matched.length === 0)  this.matched = 
         },
         closeBoxApp() {
 
             this.showAppBox = false
-
+        },
+        onHam() {
+            // TODO: make it with event bus instaed
+            // this.$emit('hamClicked')
         }
 
     },
