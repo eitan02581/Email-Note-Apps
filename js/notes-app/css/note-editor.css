@@ -1,4 +1,5 @@
 section.note-editor-wrapper{
+    z-index: 130;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -13,6 +14,7 @@ section.note-editor-wrapper{
 box-shadow: 2px 7px 35px 1px rgba(0,0,0,0.20);
 }
 div.modal-container{
+    z-index: 129;
     position: fixed;
     width: 100%;
     min-height: 100%;
@@ -35,13 +37,22 @@ section.note-editor-wrapper input:focus{
     border:none;
     outline: none;
 }
-
+section.note-editor-wrapper div.tools-container{
+    display: flex;
+    justify-content: space-between;
+}
 section.note-editor-wrapper input.text{
     letter-spacing: .00625em;
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5rem;
 
+}
+
+section.note-editor-wrapper div.details{
+    display: flex;
+    justify-content: flex-end;
+    font-size: 13px;
 }
 
 section.note-editor-wrapper input.title{

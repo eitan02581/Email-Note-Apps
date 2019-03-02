@@ -7,6 +7,10 @@ section.note-update-toolbar input#imageUrl{
 
 section.note-update-toolbar{
     user-select: none;
+    display: flex;
+    justify-content: space-between;
+    padding:5px;
+
 
 }
 

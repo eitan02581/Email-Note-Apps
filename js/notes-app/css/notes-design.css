@@ -3,6 +3,23 @@
     font-size: 15px;
 
 }
+.notes-app-wrapper button{
+    border-width: none;
+    border-style: none;
+    border-color: none;
+    border-image: none;
+    -webkit-appearance: none;
+    background-color:rgba(0, 0, 0, 0);
+    color:rgb(0, 0, 0)
+}
+.notes-app-wrapper i{
+    color:rgb(87, 87, 87);
+    transition: all 0.3s;
+
+}
+.notes-app-wrapper i:hover{
+    color:rgb(34, 34, 34)
+}
 
 .note-preview-wrapper div.note{
     position:relative;
