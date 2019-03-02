@@ -19,8 +19,7 @@ export default {
     `,
     methods:{
         changeColor(color){
-console.log(color)
-       this.$emit('reciveColor',color)
+         this.$emit('reciveColor',color)
         }
     }
 }

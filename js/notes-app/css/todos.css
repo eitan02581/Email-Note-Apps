@@ -1,0 +1,9 @@
+section.todos-wrapper div.todo-container {
+    display:flex;
+    position: relative;
+}
+
+section.todos-wrapper button.x{
+    position: absolute;
+    right:0%;
+}

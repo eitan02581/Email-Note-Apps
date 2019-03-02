@@ -6,23 +6,44 @@ import noteEditor from '../cmp/note-editor.cmp.js'
 export default {
     template: `
         <section class="notes-list-wrapper">
-            <div v-if="pinViewMode" class="block">pinned</div>
+
+            <div v-if="pinViewMode" class="block">
+                pinned
+            </div>
 
             <div class="list-container">
-            <note-preview @openEditor="openingEditor"  :key="currNote.id" v-for="(currNote, idx) in pinnedNotesOnly" :note="currNote">
+            <note-preview 
+             v-for="(currNote, idx) in pinnedNotesOnly" 
+             :key="currNote.id" 
+             :note="currNote"
+             @openEditor="openingEditor"  
+            >
+            <!-- notes render here -->
             </note-preview>
             </div>
           
-            <div v-if="pinViewMode" class="block">others</div>
+            <div v-if="pinViewMode" class="block">
+                others
+            </div>
 
             <div class="list-container">
-             <note-preview @openEditor="openingEditor" :key="currNote.id" v-for="(currNote, idx) in unpinnedNotesOnly" :note="currNote">
-            </note-preview>
+                <note-preview 
+                 v-for="(currNote, idx) in unpinnedNotesOnly"
+                 :key="currNote.id"
+                 @openEditor="openingEditor"
+                 :note="currNote"
+                >
+                <!-- notes render here -->
+                </note-preview>
             </div>
 
             <div v-if="showEditor">
                 <div @click="closeModal" class="modal-container"></div>
-                <note-editor :noteFromFather="noteInEditor" @closeModal="closeModal"></note-editor>
+                <note-editor 
+                :noteFromFather="noteInEditor" 
+                @closeModal="closeModal"
+                @createNewTodo = "pushNewTodo"
+                ></note-editor>
                
             </div>
 
@@ -42,7 +63,6 @@ export default {
     },
     methods: {
         openingEditor(note){
-        console.log('i will open editor to this note:',note)
         this.noteInEditor = note
         this.showEditor = true
 
@@ -50,6 +70,10 @@ export default {
         closeModal(){
             this.showEditor = false
         },
+        pushNewTodo(todo,id){
+            console.log(todo,id)
+            noteService.pushNewComment(id,todo)
+        }
         
     },
     computed: {

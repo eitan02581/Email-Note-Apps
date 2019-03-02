@@ -13,9 +13,9 @@ section.note-editor-wrapper{
 box-shadow: 2px 7px 35px 1px rgba(0,0,0,0.20);
 }
 div.modal-container{
-    position: absolute;
-    width: 100vw;
-    height: 100vw;
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
     background-color: #e5e5e5;
     opacity: .75;
     top: 0%;
@@ -83,3 +83,6 @@ font-size: 1.375rem;
     right:0%;
 }
 
+.note-editor-wrapper div.add-todo{
+    display:flex;
+}

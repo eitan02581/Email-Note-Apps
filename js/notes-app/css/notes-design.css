@@ -43,3 +43,7 @@
     right:0%;
 }
 
+.note-preview-wrapper li{
+    display:flex;
+}
+
