@@ -22,9 +22,9 @@ export default {
     data() {
         return {
             emailObj: {
-                to: null,
-                subject: null,
-                body: null
+                to: '',
+                subject: '',
+                body: ''
             }
 
         }

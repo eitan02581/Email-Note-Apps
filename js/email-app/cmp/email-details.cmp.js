@@ -12,13 +12,20 @@ export default {
     },
     template: `
     <section class="email-details-wrapper" v-if="email">
+            <transition>
+            <div v-if="actionMade" class="action-indcation">
+                <h1>{{actionTxt}}</h1>
+            </div>
+            </transition>
+
         <div class="email-container">
             <div class="top">
                 <button @click="back">Back</button>
                 <button @click="deleteEmail"> <i class="far fa-trash-alt fa-2x" ></i></button>
                 <button v-if="!email.isStarred" @click="toggleStarred"><i class="far fa-star fa-2x"></i></button>
                 <button v-else @click="toggleStarred" ><i class="fas fa-star fa-2x"></i></button>
-                <button><i class="fas fa-ban fa-2x"></i></button>
+                <button v-if="category === 'inbox'" @click="toogleSpam(email)"><i class="fas fa-ban fa-2x"></i></button>
+                <button v-if="category === 'spam'" @click="toogleSpam(email)">Unspam</button>
             </div>
             <div class="main">
                 <h1>{{email.subject}}</h1>
@@ -55,11 +62,13 @@ export default {
             email: null,
             category: null,
             emailObj: {
-                to: null,
-                subject: null,
-                body: null
+                to: '',
+                subject: '',
+                body: ''
             },
-            state: false
+            state: false,
+            actionMade: false,
+            actionTxt: null
         }
     },
     methods: {
@@ -74,12 +83,21 @@ export default {
             this.$router.go(-1);
         },
         setCategory() {
+            // TODO: use a btetter regex method
             var path = this.$route.path;
-            var res = /\/email\/inbox/.test(path);
-            if (res) {
+            var res;
+            (/\/email\/inbox/.test(path)) ? res = 'inbox': res = false
+
+            if (res === 'inbox') {
                 this.category = 'inbox'
             } else {
-                this.category = 'sent'
+                (/\/email\/sent/.test(path)) ? res = 'sent': res = false
+                if (res === 'sent') this.category = 'sent'
+                else {
+                    (/\/email\/starred/.test(path)) ? res = 'starred': res = false
+                    if (res === 'starred') this.category = 'starred'
+                    else this.category = 'spam'
+                }
             }
         },
         onSendEmail() {
@@ -87,15 +105,17 @@ export default {
             if (this.emailObj.to) {
                 emailService.sendEmail(this.emailObj);
                 this.state = false
+                this.actionMade = true
+                this.actionTxt = "Email was sent!"
+                setTimeout(() => {
+                    this.actionMade = false
+                }, 1500);
             }
 
         },
         onReply() {
-            console.log(this.category);
-
             this.state = 'reply'
             this.category === 'inbox' ? this.emailObj.to = this.email.from : this.emailObj.to = this.email.to
-
         },
         onForward() {
             this.state = 'forward'
@@ -103,10 +123,25 @@ export default {
         },
         toggleStarred() {
             this.email.isStarred = !this.email.isStarred
-
         },
         onMakeNote(email) {
             emailService.transformToNote(email)
+            this.actionMade = true
+            this.actionTxt = "A new note made"
+            setTimeout(() => {
+                this.actionMade = false
+            }, 1500);
+        },
+        toogleSpam(email) {
+            if (!email.isSpam) {
+                emailService.setEmailToSpam(email)
+                this.$router.go(-1)
+            } else {
+                emailService.unSpamEmail(email)
+                this.$router.go(-1)
+                console.log('asd');
+
+            }
         }
 
     },
