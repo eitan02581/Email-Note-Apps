@@ -15,9 +15,9 @@ export default {
     template: `
     <section class="email-app-wrapper">
         <div class="aside">
-            <email-aside @showCompose="showCompose = true"></email-aside>
+            <email-aside :InboxLeftToRead="emailsLeftToRead" @showCompose="showCompose = true"></email-aside>
         </div>
-        <router-view @deleteEmail="onDeleteEmail"  ></router-view>
+        <router-view @leftToRead="InboxLeftToRead"  @deleteEmail="onDeleteEmail"  ></router-view>
         <div v-if="showCompose" class="compose-new-mail">
             <email-compose @exitCompose="ExitCompose" ></email-compose>
         </div>
@@ -27,12 +27,12 @@ export default {
         return {
             showCompose: false,
             selectedEmail: null,
+            emailsLeftToRead: null
         }
     },
-    created() {
-    },
+    created() {},
     methods: {
-     
+
         ExitCompose() {
             this.showCompose = false
         },
@@ -40,6 +40,9 @@ export default {
             emailService.deleteEmail(emailId, this.category).then((updatedEmails) => {
                 this.emailsByCategory = updatedEmails
             })
+        },
+        InboxLeftToRead(num) {
+            this.emailsLeftToRead = num
         }
     },
     watch: {

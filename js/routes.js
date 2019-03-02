@@ -17,12 +17,20 @@ const routes = [{
             {
                 path: 'inbox/:emailId',
                 component: emailDetail
-            },{
+            }, {
                 path: 'sent',
                 component: emailList
             },
             {
                 path: 'sent/:emailId',
+                component: emailDetail
+            },
+            {
+                path: 'starred',
+                component: emailList
+            },
+            {
+                path: 'starred/:emailId',
                 component: emailDetail
             }
         ]
