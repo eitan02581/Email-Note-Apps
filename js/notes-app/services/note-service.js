@@ -15,13 +15,14 @@ export default {
 //(private functions and variables)//
 var _nextId = 4
 var _nextTodoId = 3
-function _getNoteById(id){
-    return gNotes.find((note)=>note.id===id)
+
+function _getNoteById(id) {
+    return gNotes.find((note) => note.id === id)
 }
 
 ///C.-CREATE funtcions///
-function createTextNote(newTitle,newText){
-    var newNote =  {
+function createTextNote(newTitle, newText) {
+    var newNote = {
         id: 'N' + _nextId++,
         createdAt: Date.now(),
         archive: false,
@@ -29,15 +30,20 @@ function createTextNote(newTitle,newText){
         content: {
             title: newTitle,
             text: newText,
-            imageUrl:'',
+            imageUrl: '',
         },
         backgroundColor: 'white',
     }
     gNotes.push(newNote)
 }
-function pushNewComment(fatherNoteId,newComment){
+
+function pushNewComment(fatherNoteId, newComment) {
     var note = _getNoteById(fatherNoteId)
-    var todo = {comment:newComment,isDone:false,todoId:'T'+_nextTodoId}
+    var todo = {
+        comment: newComment,
+        isDone: false,
+        todoId: 'T' + _nextTodoId
+    }
     _nextTodoId++
     note.content.todos.push(todo)
 }
@@ -46,33 +52,36 @@ function getNotes() {
     return gNotes
 }
 ///U.-UPDATE funtcions///
-function update(noteId,newValue,key,innerKey){
-var currNote = _getNoteById(noteId)
-if(innerKey) currNote[key][innerKey] = newValue
-else currNote[key] = newValue
+function update(noteId, newValue, key, innerKey) {
+    var currNote = _getNoteById(noteId)
+    if (innerKey) currNote[key][innerKey] = newValue
+    else currNote[key] = newValue
 }
 
-function toggleArchiveById(noteId){
+function toggleArchiveById(noteId) {
     var currNote = _getNoteById(noteId)
     currNote.archive = !currNote.archive
 }
-function updateImage(id,imageUrl){
+
+function updateImage(id, imageUrl) {
     var note = _getNoteById(id)
     note.content.imageUrl = imageUrl
 }
-function updateBackgroundColor(noteId,color){
+
+function updateBackgroundColor(noteId, color) {
     var note = _getNoteById(noteId)
     note.backgroundColor = color
 }
 ///D.-DELETE funtcions///
-function deleteNoteByid(noteId){
-    var deleteIdx = gNotes.findIndex((note)=>note.id === noteId)
-    gNotes.splice(deleteIdx,1)
+function deleteNoteByid(noteId) {
+    var deleteIdx = gNotes.findIndex((note) => note.id === noteId)
+    gNotes.splice(deleteIdx, 1)
 }
-function deleteTodo(noteId,id){
+
+function deleteTodo(noteId, id) {
     var note = _getNoteById(noteId)
-    var index = note.content.todos.findIndex((todo)=>todo.todoId===id)
-    note.content.todos.splice(index,1)
+    var index = note.content.todos.findIndex((todo) => todo.todoId === id)
+    note.content.todos.splice(index, 1)
 }
 
 
@@ -88,7 +97,7 @@ var gNotes = [{
         content: {
             title: 'first note ever',
             text: 'im a text',
-            imageUrl:'',
+            imageUrl: '',
         },
         backgroundColor: 'yellow',
     },
@@ -113,9 +122,16 @@ var gNotes = [{
             title: 'third note ever',
             text: '',
             imageUrl: '',
-            todos:[{comment:'finish project',isDone:true,todoId:'T1'},{comment:'order pizza',isDone:false,todoId:'T2'}],
+            todos: [{
+                comment: 'finish project',
+                isDone: true,
+                todoId: 'T1'
+            }, {
+                comment: 'order pizza',
+                isDone: false,
+                todoId: 'T2'
+            }],
         },
         backgroundColor: 'hotpink',
-    } 
+    }
 ]
-

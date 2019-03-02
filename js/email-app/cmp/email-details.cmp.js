@@ -43,6 +43,7 @@ export default {
                         <button @click="onReply" > <i class="fas fa-reply"></i>Reply</button>
                         <button  @click="onForward">Forward <i class="fas fa-arrow-right"></i></button>
                         <button @click="state = false" v-if="state"><i class="far fa-trash-alt"></i></button>
+                        <button @click="onMakeNote(email)">Make A Note</button>
                     </div>
                 </div>
             </div>
@@ -103,6 +104,9 @@ export default {
         toggleStarred() {
             this.email.isStarred = !this.email.isStarred
 
+        },
+        onMakeNote(email) {
+            emailService.transformToNote(email)
         }
 
     },

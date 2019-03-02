@@ -8,7 +8,8 @@ export default {
     getEmailById,
     emailClicked,
     getStarredEmails,
-    storeEmails
+    storeEmails,
+    transformToNote
 }
 var gInboxEmails = [{
     id: utilService.idGenerator(),
@@ -180,4 +181,7 @@ function emailClicked(emailId, category, setUnRead) {
         storageService.store('gSentEmails', gSentEmails);
     })
     return Promise.resolve()
+}
+function transformToNote(email){
+    
 }

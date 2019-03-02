@@ -279,7 +279,7 @@
 }
 
 .email-details-wrapper .bottom button {
-    width: 100px;
+    /* width: 100px; */
     height: 36px;
     border: none;
     background-color: #ffffff;
