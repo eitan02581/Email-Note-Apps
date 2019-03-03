@@ -73,7 +73,7 @@ export default {
             // set diffenet color for clicked email
             // emailService.emailClicked(email.id, this.category)
             email.isRead = true
-
+            
             // emailService.emailClicked(email.id, this.category).then(() => {
             if (this.$route.path === '/email/inbox') this.countInboxLeft()
             // })
@@ -154,6 +154,7 @@ export default {
             })
             this.inboxLeftToRead = counter;
             eventBus.$emit('SHOW_EMAIL_TO_READ', counter)
+            // eventBus.$emit(SHOW_EMAIL_TO_READ, counter)
             this.$emit('leftToRead', counter)
 
         },

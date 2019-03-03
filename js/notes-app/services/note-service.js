@@ -16,6 +16,7 @@ export default {
     deleteTodo,
 }
 
+
 //(private functions and variables)//
 var _nextId = 4
 var _nextTodoId = 3
