@@ -5,21 +5,29 @@ export default {
     <section class="email-aside-wrapper">
      <div class="email-aside-container">
             <div class="comose-btn">
-                <button @click="onComposeBtn">+ Compose</button> 
+                <button @click="onComposeBtn"><img src="https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png"> Compose</button> 
             </div>
-            <div class="inbox-btn">
-                 <router-link  to="/email/inbox"><i class="fas fa-inbox "></i> Inbox</router-link>
-                 {{InboxLeftToRead}}
-            </div>
-            <div class="sent-btn">
-                <router-link  to="/email/sent"> <i class="far fa-share-square"></i>sent</router-link>
-            </div>
+            <router-link  to="/email/inbox">
+                <div class="inbox-btn">
+                        <i style="color:#00BCD4;" class="fas fa-inbox "></i><button> Inbox</button>
+                        {{InboxLeftToRead}}
+                </div>
+            </router-link>
+            <router-link   to="/email/sent"> 
+                <div class="sent-btn">
+                 <i style="color: #4CAF50;" class="far fa-share-square"></i><button>Sent</button>
+                </div>
+            </router-link>
+            <router-link  to="/email/starred">
+                <div class="starred-btn">
+                      <i style="color:gold;" class="fas fa-star"></i><button>Starred</button>
+                </div>
+            </router-link>
+            <router-link  to="/email/spam">
             <div class="starred-btn">
-                <router-link  to="/email/starred"> <i class="fas fa-star"></i> starred</router-link>
+                 <i class="fas fa-ban "></i><button>Spam</button>
             </div>
-            <div class="starred-btn">
-                <router-link  to="/email/spam"> <i class="fas fa-ban "></i> spam</router-link>
-            </div>
+            </router-link>
      </div>
     </section>
     `,

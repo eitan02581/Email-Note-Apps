@@ -142,7 +142,7 @@
     justify-content: center;
     align-items: center;
     background-color: white;
-    z-index: 1;
+    z-index: 13;
     transition: 0.3s
 }
 
@@ -200,9 +200,11 @@
         transform: translateY(70px);
         opacity: 0;
     }
+
     60% {
         opacity: (1)
     }
+
     100% {
         transform: scale(1);
 

@@ -48,10 +48,11 @@ export default {
             showAppBox: false,
             inboxEmails: null,
             sentEmails: null,
+            spamEmails: null,
             category: null,
             searchValue: null,
             matched: null,
-            isSearchActive: false
+            isSearchActive: false,
         }
     },
     computed: {
@@ -67,16 +68,36 @@ export default {
             this.sentEmails = sentEmails
 
         })
-        var str = this.$route.path;
-        // console.log(str);    
-        // TODO: maybe a more specific condition is nedded (in case of more email filters)
-        var res = /\/email\/inbox/.test(str);
-        if (res) {
+        emailService.getSpamEmails().then((spamEmails) => {
+            this.spamEmails = spamEmails
+        })
+        // var str = this.$route.path;
+        // // console.log(str);    
+        // // TODO: maybe a more specific condition is nedded (in case of more email filters)
+        // var res = /\/email\/inbox/.test(str);
+        // if (res) {
+        //     this.category = 'inbox'
+        // } else {
+        //     this.category = 'sent'
+        //     // this.category = this.$route.path
+        // }
+        var path = this.$route.path;
+
+        var res;
+        (/\/email\/inbox/.test(path)) ? res = 'inbox': res = false
+
+        if (res === 'inbox') {
             this.category = 'inbox'
         } else {
-            this.category = 'sent'
-            // this.category = this.$route.path
+            (/\/email\/sent/.test(path)) ? res = 'sent': res = false
+            if (res === 'sent') this.category = 'sent'
+            else {
+                (/\/email\/starred/.test(path)) ? res = 'starred': res = false
+                if (res === 'starred') this.category = 'starred'
+                else this.category = 'spam'
+            }
         }
+
     },
     methods: {
         closeSearchList() {
@@ -92,13 +113,22 @@ export default {
         setSearchOptions() {
             var matchedEmails
             this.isSearchActive = true
+            console.log(this.category);
 
             if (this.category === 'inbox') {
                 matchedEmails = this.inboxEmails.filter(email => email.subject.includes(this.searchValue) || email.body.includes(this.searchValue))
                 this.matched = matchedEmails
-
             } else if (this.category === 'sent') {
+                console.log(this.sentEmails);
                 matchedEmails = this.sentEmails.filter(email => email.subject.includes(this.searchValue) || email.body.includes(this.searchValue))
+                this.matched = matchedEmails
+            } else if (this.category === 'starred') {
+                console.log(this.sentEmails);
+                matchedEmails = this.sentEmails.filter(email => ((email.subject.includes(this.searchValue) || email.body.includes(this.searchValue)) && email.isStarred))
+                this.matched = matchedEmails
+            } else if (this.category === 'spam') {
+                console.log(this.sentEmails);
+                matchedEmails = this.spamEmails.filter(email => ((email.subject.includes(this.searchValue) || email.body.includes(this.searchValue))))
                 this.matched = matchedEmails
             }
         },
@@ -110,26 +140,25 @@ export default {
             // TODO: make it with event bus instaed
             // this.$emit('hamClicked')
         }
-
     },
     watch: {
         '$route.path': function () {
-            var str = this.$route.path;
-
             this.isSearchActive = false
             this.matched = null;
-            var res = /\/email\/inbox/.test(str);
-            // TODO: maybe a more specific condition is nedded (in case of more email filters)
-            // if (this.$route.path === '/email/inbox') {
-            //     this.category = 'inbox'
+            var path = this.$route.path;
+            var res;
+            (/\/email\/inbox/.test(path)) ? res = 'inbox': res = false
 
-            // } else if (this.$route.path === '/email/sent') {
-            //     this.category = 'sent'
-            // }
-            if (res) {
+            if (res === 'inbox') {
                 this.category = 'inbox'
             } else {
-                this.category = 'sent'
+                (/\/email\/sent/.test(path)) ? res = 'sent': res = false
+                if (res === 'sent') this.category = 'sent'
+                else {
+                    (/\/email\/starred/.test(path)) ? res = 'starred': res = false
+                    if (res === 'starred') this.category = 'starred'
+                    else this.category = 'spam'
+                }
             }
         },
         searchValue() {

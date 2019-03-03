@@ -36,6 +36,7 @@ export default {
             </div>    
             <email-preview :class="{clicked: email.isRead}" @click.native="onEmailClicked(email)" :email="email" ></email-preview>
         </div>
+        <div  class="email-n-toolbar-wrapper" v-if="emailToShow.length === 0"><h1>NO EMAIL TO SHOW</h1></div>
     </section>
     `,
     data() {
@@ -58,6 +59,8 @@ export default {
             this.initSent()
         } else if (this.$route.path === '/email/starred') {
             this.initStarred()
+        } else if (this.$route.path === '/email/spam') {
+            this.initSpam()
         }
 
 
@@ -111,6 +114,14 @@ export default {
                 this.filterdEmails = starred
             })
         },
+        initSpam() {
+            emailService.getSpamEmails().then((spam) => {
+                this.emailsByCategory = spam
+                this.category = 'spam'
+                this.emailToShow = spam
+                this.filterdEmails = spam
+            })
+        },
         onFilter() {
             this.filterdEmails = []
             if (this.filterMode === 'Unread') {
@@ -154,11 +165,18 @@ export default {
         '$route.path': function () {
             if (this.$route.path === '/email/inbox') {
                 this.initInbox()
+                console.log('inbox');
 
             } else if (this.$route.path === '/email/sent') {
                 this.initSent()
             } else if (this.$route.path === '/email/starred') {
+                console.log('starred');
+
                 this.initStarred()
+            } else if (this.$route.path === '/email/spam') {
+                console.log('spam');
+
+                this.initSpam()
             }
         }
     }

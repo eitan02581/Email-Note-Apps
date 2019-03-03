@@ -32,6 +32,13 @@ const routes = [{
             {
                 path: 'starred/:emailId',
                 component: emailDetail
+            }, {
+                path: 'spam',
+                component: emailList
+            },
+            {
+                path: 'spam/:emailId',
+                component: emailDetail
             }
         ]
     },
