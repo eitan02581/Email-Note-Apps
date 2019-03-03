@@ -3,7 +3,13 @@ import emailService from '../../email-app/service/email-service.js'
 import {
     eventBus,
     TOGGLE_HAM,
-    SHOW_EMAIL_TO_READ
+    SHOW_EMAIL_TO_READ,
+    FILTER_NONE,
+    FILTER_TEXT,
+    FILTER_IMAGE,
+    FILTER_TODO,
+    FILTER_VIDEO,
+    FILTER_AUDIO,
 
 } from '../../service/event-bus.js'
 export default {
@@ -27,7 +33,7 @@ export default {
                 </router-link>
                 </div>
             </div>
-            <div  class="search-wrapper">
+            <div v-if="isEmail"  class="search-wrapper">
                 <input @blur="closeSearchList" v-model="searchValue"  placeholder="Search">
                 <div v-if="isSearchActive && isEmail" class="filted-list">
                     <ul>    
@@ -38,6 +44,48 @@ export default {
                     </ul>
                 </div>
             </div>
+
+            <div 
+             v-if="isKeep" 
+             class="keep-search-wrapper">
+
+                
+            
+                
+                <div v-if="isKeep" class="filter-box">
+               
+                <span>
+                <button @click="onFilterNone" > 
+                    <i class="fas fa-filter"></i>
+                </button>
+                </span>
+               
+              
+                <button @click="onFilterText" :class="{active:(filterBy==='text')}"> 
+                    
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <button @click="onFilterTodo" :class="{active:(filterBy==='todo')}" > 
+                    <i class="fas fa-list"></i>
+                    </button>
+                    <button @click="onFilterImage" :class="{active:(filterBy==='image')}"> 
+                    <i class="far fa-image"></i>
+                    </button>
+                    <button @click="onFilterVideo" :class="{active:(filterBy==='video')}">
+                    <i class="fas fa-video"></i>
+                    </button>
+                    <button  @click="onFilterAudio" :class="{active:(filterBy==='audio')}"> 
+                    <i class="fas fa-music"></i>
+                    </button>
+                   
+                    
+                </div>
+
+               
+                
+
+            </div>
+
             <div  class="apps-box-wrapper">
                 <button @click="showAppBox = !showAppBox">
                     <i style="color:#607d8b" class="fas fa-th fa-2x"></i>
@@ -67,7 +115,8 @@ export default {
             searchValue: null,
             matched: null,
             isSearchActive: false,
-            emailsLeftToRead: null
+            emailsLeftToRead: null,
+            filterBy: ''
         }
     },
     computed: {
@@ -125,6 +174,9 @@ export default {
             }
         }
 
+        // keep funcs
+       
+
     },
     methods: {
         closeSearchList() {
@@ -164,6 +216,34 @@ export default {
         },
         onHam() {
             eventBus.$emit(' TOGGLE_HAM')
+        },
+        onFilterNone(){
+            this.filterBy = ''
+            eventBus.$emit('FILTER_NONE')
+        },
+        onFilterText(){
+            this.filterBy = 'text'
+            console.log('asd')
+            eventBus.$emit('FILTER_TEXT')
+        },
+        onFilterTodo(){
+            this.filterBy = 'todo'
+            eventBus.$emit('FILTER_TODO')
+        },
+        onFilterImage(){
+            this.filterBy = 'image'
+            eventBus.$emit('FILTER_IMAGE')
+        },
+        onFilterVideo(){
+            this.filterBy = 'video'
+            eventBus.$emit('FILTER_VIDEO')
+        },
+        onFilterAudio(){
+            this.filterBy = 'audio'
+            eventBus.$emit('FILTER_AUDIO')
+        },
+        getActiveClass(filterBy) {
+            return (this.filterBy === filterBy)? 'active' : '';
         }
     },
     watch: {

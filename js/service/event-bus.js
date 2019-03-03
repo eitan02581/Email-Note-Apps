@@ -1,3 +1,9 @@
 export const eventBus = new Vue();
 export const SHOW_EMAIL_TO_READ = 'mail was clicked';
 export const TOGGLE_HAM = 'ham was clicked';
+export const FILTER_NONE = 'nav-bar cmp activaiting function in notelist cmp';
+export const FILTER_TEXT = 'nav-bar cmp activaiting function in notelist cmp';
+export const FILTER_TODO = 'nav-bar cmp activaiting function in notelist cmp';
+export const FILTER_IMAGE = 'nav-bar cmp activaiting function in notelist cmp';
+export const FILTER_VIDEO = 'nav-bar cmp activaiting function in notelist cmp';
+export const FILTER_AUDIO = 'nav-bar cmp activaiting function in notelist cmp';
