@@ -139,7 +139,6 @@ export default {
         pushNewTodo(){
             this.$emit('createNewTodo',this.newTodo,this.note.id)
             this.newTodo = null
-            console.log(this.note)
         }
 
     },
