@@ -56,25 +56,25 @@ export default {
     data() {
         return {
             notes: null,
-            noteInEditor:null,
-           showEditor:false,
+            noteInEditor: null,
+            showEditor: false,
 
         }
     },
     methods: {
-        openingEditor(note){
-        this.noteInEditor = note
-        this.showEditor = true
+        openingEditor(note) {
+            this.noteInEditor = note
+            this.showEditor = true
 
         },
-        closeModal(){
+        closeModal() {
             this.showEditor = false
         },
-        pushNewTodo(todo,id){
-            console.log(todo,id)
-            noteService.pushNewComment(id,todo)
+        pushNewTodo(todo, id) {
+            console.log(todo, id)
+            noteService.pushNewComment(id, todo)
         }
-        
+
     },
     computed: {
         pinnedNotesOnly() {

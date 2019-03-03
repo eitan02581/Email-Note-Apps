@@ -14,7 +14,7 @@ export default {
     <section @click="isSearchActive=false" class="nav-wrapper">
         <nav>
             <div class="logo-ham-container">
-                <div class="hamburger-wrapper">
+                <div v-if="isEmail" class="hamburger-wrapper">
                     <button @click="onHam">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/VisualEditor_-_Icon_-_Menu.svg/768px-VisualEditor_-_Icon_-_Menu.svg.png">
                     </button>
@@ -40,7 +40,7 @@ export default {
             </div>
             <div  class="apps-box-wrapper">
                 <button @click="showAppBox = !showAppBox">
-                    <i class="fas fa-th fa-2x"></i>
+                    <i style="color:#607d8b" class="fas fa-th fa-2x"></i>
                 </button>
             </div>
         </nav>   

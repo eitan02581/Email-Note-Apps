@@ -4,6 +4,12 @@
     display: flex;
 }
 
+.hide-load-email {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+}
 
 
 .compose-new-mail {
@@ -11,6 +17,22 @@
     position: absolute;
     bottom: 0;
 }
+
+.email-loading-gif {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* loading gif */
+.email-loading-gif img {
+    width: 460px;
+}
+
+.email-loading-gif {}
 
 /* aside animation */
 
@@ -53,6 +75,9 @@
         height: 47%;
     }
 
+    .email-loading-gif img {
+        width: 360px;
+    }
 
 }
 
@@ -70,7 +95,9 @@
         padding-left: unset;
     }
 
-
+    .email-loading-gif img {
+        width: 260px;
+    }
 }
 
 

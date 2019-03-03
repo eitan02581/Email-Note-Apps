@@ -38,6 +38,7 @@ export default {
             if (this.emailObj.to && this.emailObj.subject) {
                 emailService.sendEmail(this.emailObj);
                 this.onExitCompose()
+                this.$emit('actionMade')
             }
 
         }
