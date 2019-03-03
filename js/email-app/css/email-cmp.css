@@ -13,6 +13,9 @@
     padding: 10px;
     cursor: pointer;
     transition: 0.2s;
+    font-weight: bold;
+    font-weight: bold;
+
 }
 
 .email-preview-wrapper .email-container {
@@ -21,6 +24,8 @@
     align-items: center;
     width: 100%;
     height: 100%;
+    line-height: 30px;
+
 
 }
 
@@ -47,6 +52,7 @@
 .email-n-toolbar-wrapper .rigth-toolbar {
     width: 80px;
     background-color: white;
+    padding-left: 7px
 }
 
 .email-n-toolbar-wrapper .rigth-toolbar button {
@@ -85,6 +91,7 @@
     background: white;
     margin-top: 15px;
     margin-left: 10px;
+    margin-right: 10px;
     transition: 0.3s;
 
 
@@ -259,7 +266,7 @@
     overflow: scroll;
 }
 
-.email-details-wrapper .action-indcation {
+.action-indcation {
     position: absolute;
     z-index: 11;
     width: 260px;
@@ -279,7 +286,12 @@
 
 }
 
-.email-details-wrapper .action-indcation h1 {
+.compose-active {
+    /* position: absolute; */
+    /* right: 14px */
+}
+
+.action-indcation h1 {
     color: #f44336;
 }
 
@@ -468,5 +480,5 @@
 
 .clicked {
     background-color: #cfdee6;
-    font-weight: bold;
+    font-weight: unset;
 }

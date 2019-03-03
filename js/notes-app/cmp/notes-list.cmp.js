@@ -63,12 +63,12 @@ export default {
         }
     },
     methods: {
-        openingEditor(note){
-        this.noteInEditor = note
-        this.showEditor = true
+        openingEditor(note) {
+            this.noteInEditor = note
+            this.showEditor = true
 
         },
-        closeModal(){
+        closeModal() {
             this.showEditor = false
         },
         pushNewTodo(todo,id){

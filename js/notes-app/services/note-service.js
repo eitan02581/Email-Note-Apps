@@ -25,30 +25,32 @@ function _getNoteById(id) {
     return gNotes.find((note) => note.id === id)
 }
 
-function _save(){
-    storageService.store('notes',gNotes )
-    storageService.store('nextId',_nextId )
-    storageService.store('nextTodoId',_nextTodoId )
+function _save() {
+    storageService.store('notes', gNotes)
+    storageService.store('nextId', _nextId)
+    storageService.store('nextTodoId', _nextTodoId)
 }
-function _load(){
+
+function _load() {
     gNotes = storageService.load('notes')
     _nextId = storageService.load('nextId')
     _nextTodoId = storageService.load('nextTodoId')
 }
 
 ///C.-CREATE funtcions///
-function createImageNote(newImageUrl){
+function createImageNote(newImageUrl) {
     _save()
 }
-function createTodoNote(newTitle, newTodosArray){
+
+function createTodoNote(newTitle, newTodosArray) {
     var formattedTodos = []
-    
-    if(newTodosArray){
-        formattedTodos = newTodosArray.map((todo)=>{
+
+    if (newTodosArray) {
+        formattedTodos = newTodosArray.map((todo) => {
             var formatForTodo = {}
             formatForTodo['comment'] = todo
             formatForTodo['isDone'] = true
-            formatForTodo['todoId'] = 'T' +_nextTodoId++ 
+            formatForTodo['todoId'] = 'T' + _nextTodoId++
             return formatForTodo
         })
     }
@@ -61,8 +63,8 @@ function createTodoNote(newTitle, newTodosArray){
             title: newTitle,
             todos: formattedTodos,
             imageUrl: '',
-            videoUrl:'',
-            audioUrl:'',
+            videoUrl: '',
+            audioUrl: '',
         },
         backgroundColor: 'white',
     }
@@ -81,8 +83,8 @@ function createTextNote(newTitle, newText) {
             title: newTitle,
             text: newText,
             imageUrl: '',
-            videoUrl:'',
-            audioUrl:'',
+            videoUrl: '',
+            audioUrl: '',
         },
         backgroundColor: 'white',
     }
@@ -104,9 +106,9 @@ function pushNewComment(fatherNoteId, newComment) {
 }
 ///R.-READ funtcions///
 function getNotes() {
-    if(storageService.load('notes')){
-    _load()
-    } 
+    if (storageService.load('notes')) {
+        _load()
+    }
     return gNotes
 }
 ///U.-UPDATE funtcions///
@@ -149,6 +151,30 @@ function deleteTodo(noteId, id) {
 
 //_The notes database itself: 
 var gNotes = [{
+        id: 'eitan',
+        createdAt: 1551259417463,
+        pinned: true,
+        content: {
+            title: 'Eitan Elnekave',
+            text: 'im a Eitan',
+            imageUrl: '../../../css/images/Picture1.png',
+            videoUrl: '',
+            audioUrl: '',
+        }, 
+        backgroundColor: 'rgb(255, 244, 117)',
+    }, {
+        id: 'guy',
+        createdAt: 1551259417463,
+        pinned: true,
+        content: {
+            title: 'Guy Shpigler',
+            text: 'im a Guy',
+            imageUrl: '../../../css/images/profil2.jpg',
+            videoUrl: '',
+            audioUrl: '',
+        },
+        backgroundColor: 'rgb(255, 244, 117)',
+    }, {
         id: 'N1',
         createdAt: 1551259417463,
         pinned: true,
@@ -156,8 +182,8 @@ var gNotes = [{
             title: 'first note ever',
             text: 'im a text',
             imageUrl: '',
-            videoUrl:'/css/videos/bunny.mp4',
-            audioUrl:'css/audios/horse.mp3',
+            videoUrl: '/css/videos/bunny.mp4',
+            audioUrl: 'css/audios/horse.mp3',
         },
         backgroundColor: 'rgb(255, 244, 117)',
     },
@@ -169,8 +195,8 @@ var gNotes = [{
             title: 'second note ever',
             text: 'im a text note also',
             imageUrl: 'css/images/ball.png',
-            videoUrl:'',
-            audioUrl:'',
+            videoUrl: '',
+            audioUrl: '',
         },
         backgroundColor: 'white',
     },
@@ -182,8 +208,8 @@ var gNotes = [{
             title: 'third note ever',
             text: '',
             imageUrl: '',
-            videoUrl:'',
-            audioUrl:'',
+            videoUrl: '',
+            audioUrl: '',
             todos: [{
                 comment: 'finish project',
                 isDone: true,

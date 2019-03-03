@@ -17,7 +17,6 @@ export default {
                 <h1>{{actionTxt}}</h1>
             </div>
             </transition>
-
         <div class="email-container">
             <div class="top">
                 <button @click="back">Back</button>
