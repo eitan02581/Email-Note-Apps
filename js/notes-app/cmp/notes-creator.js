@@ -43,11 +43,11 @@ export default {
                 </button>
 
                 <button>
-                    <i class="fab fa-youtube"></i>
+                    <i class="fas fa-music"></i>
                 </button>
 
                 <button>
-                    <i class="fas fa-volume-down"></i>
+                    <i class="fas fa-video"></i>
                 </button>
             </div>
         </div>

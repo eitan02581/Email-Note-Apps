@@ -1,3 +1,5 @@
+import storageService from '../../service/storage-service.js'
+
 'use strict'
 /*
 NOTE SERVICE - NOTES DATABASE & C.R.U.D FUNCTIONS ARE HERE!
@@ -22,9 +24,20 @@ function _getNoteById(id) {
     return gNotes.find((note) => note.id === id)
 }
 
+function _save(){
+    storageService.store('notes',gNotes )
+    storageService.store('nextId',_nextId )
+    storageService.store('nextTodoId',_nextTodoId )
+}
+function _load(){
+    gNotes = storageService.load('notes')
+    _nextId = storageService.load('nextId')
+    _nextTodoId = storageService.load('nextTodoId')
+}
+
 ///C.-CREATE funtcions///
 function createImageNote(newImageUrl){
-
+    _save()
 }
 function createTodoNote(newTitle, newTodosArray){
     var formattedTodos = []
@@ -48,11 +61,14 @@ function createTodoNote(newTitle, newTodosArray){
             title: newTitle,
             todos: formattedTodos,
             imageUrl: '',
+            videoUrl:'',
+            audioUrl:'',
         },
         backgroundColor: 'white',
     }
     gNotes.push(newNote)
     console.log(gNotes)
+    _save()
     return newNote
 }
 
@@ -66,10 +82,13 @@ function createTextNote(newTitle, newText) {
             title: newTitle,
             text: newText,
             imageUrl: '',
+            videoUrl:'',
+            audioUrl:'',
         },
         backgroundColor: 'white',
     }
     gNotes.push(newNote)
+    _save()
     return newNote
 }
 
@@ -82,9 +101,13 @@ function pushNewComment(fatherNoteId, newComment) {
     }
     _nextTodoId++
     note.content.todos.push(todo)
+    _save()
 }
 ///R.-READ funtcions///
 function getNotes() {
+    if(storageService.load('notes')){
+    _load()
+    } 
     return gNotes
 }
 ///U.-UPDATE funtcions///
@@ -92,32 +115,38 @@ function update(noteId, newValue, key, innerKey) {
     var currNote = _getNoteById(noteId)
     if (innerKey) currNote[key][innerKey] = newValue
     else currNote[key] = newValue
+    _save()
 }
 
 function toggleArchiveById(noteId) {
     var currNote = _getNoteById(noteId)
     currNote.archive = !currNote.archive
+    _save()
 }
 
 function updateImage(id, imageUrl) {
     var note = _getNoteById(id)
     note.content.imageUrl = imageUrl
+    _save()
 }
 
 function updateBackgroundColor(noteId, color) {
     var note = _getNoteById(noteId)
     note.backgroundColor = color
+    _save()
 }
 ///D.-DELETE funtcions///
 function deleteNoteByid(noteId) {
     var deleteIdx = gNotes.findIndex((note) => note.id === noteId)
     gNotes.splice(deleteIdx, 1)
+    _save()
 }
 
 function deleteTodo(noteId, id) {
     var note = _getNoteById(noteId)
     var index = note.content.todos.findIndex((todo) => todo.todoId === id)
     note.content.todos.splice(index, 1)
+    _save()
 }
 
 
@@ -134,8 +163,10 @@ var gNotes = [{
             title: 'first note ever',
             text: 'im a text',
             imageUrl: '',
+            videoUrl:'/css/videos/bunny.mp4',
+            audioUrl:'css/audios/horse.mp3',
         },
-        backgroundColor: 'yellow',
+        backgroundColor: 'rgb(255, 244, 117)',
     },
     {
         id: 'N2',
@@ -146,6 +177,8 @@ var gNotes = [{
             title: 'second note ever',
             text: 'im a text note also',
             imageUrl: 'css/images/ball.png',
+            videoUrl:'',
+            audioUrl:'',
         },
         backgroundColor: 'white',
     },
@@ -158,6 +191,8 @@ var gNotes = [{
             title: 'third note ever',
             text: '',
             imageUrl: '',
+            videoUrl:'',
+            audioUrl:'',
             todos: [{
                 comment: 'finish project',
                 isDone: true,
@@ -168,6 +203,6 @@ var gNotes = [{
                 todoId: 'T2'
             }],
         },
-        backgroundColor: 'hotpink',
+        backgroundColor: 'rgb(242, 139, 130)',
     }
 ]

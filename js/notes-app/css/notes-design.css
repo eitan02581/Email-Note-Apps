@@ -64,3 +64,15 @@
     display:flex;
 }
 
+video{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+audio{
+    width: 99%;
+   margin:3px;
+   height: 23px;
+
+}
+

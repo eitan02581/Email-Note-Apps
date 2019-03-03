@@ -20,13 +20,23 @@ export default {
                  :src="noteContentImageUrl" 
                 />
 
+                <video v-if="isContentVideo"  width="238"  controls>
+                <source :src="noteContentVideo" type="video/mp4">
+                </video>
+
+                
+               
+
                 <div 
-                 class="title">
+                 class="title"
+                 v-if="isContentTitle">
                     {{noteContentTiltle}}
                 </div>
 
                 <div 
-                 class="content">
+                 class="content"
+                 v-if="contentContainsTodos||isContentText"
+                 >
 
                 <template v-if="contentContainsTodos">
                 <ul>
@@ -42,10 +52,16 @@ export default {
                     </li>
                 </ul>
                 </template>
-
-                    {{noteContentText}}
-
+                <template v-if="isContentText">
+                {{noteContentText}}
+                </template>
+                
                 </div>
+
+                
+                <audio v-if="isContentAudio" controls>
+                <source :src="noteContentAudio" type="audio/mpeg">
+                </audio>
 
                 <note-update-toolbar 
                     :fatherNote="note"
@@ -75,7 +91,8 @@ export default {
     },
     computed:{
         contentContainsTodos(){
-            return this.note.content.todos
+            if(this.note.content.todos) return this.note.content.todos[0] //empty array is truthy,and we want it to return false
+            else return this.note.content.todos
         },
         noteContentUndoneTodos(){
             if(this.note.content.todos)
@@ -102,12 +119,31 @@ export default {
         noteContentImageUrl(){
             return this.note.content.imageUrl
         },
+        noteContentVideo(){
+            return this.note.content.videoUrl
+        },
+        noteContentAudio(){
+            return this.note.content.audioUrl
+        },
         noteBackgroundColor(){
             return this.note.backgroundColor
         },
         isContentImage(){
          return this.note.content.imageUrl
         },
+        isContentVideo(){
+            return this.note.content.videoUrl
+        },
+        isContentAudio(){
+            return this.note.content.audioUrl
+        },
+        isContentTitle(){
+            return this.note.content.title
+        },
+        isContentText(){
+            return this.note.content.text
+        },
+        
         
     },
    

@@ -17,6 +17,12 @@ export default {
             <img 
              :src="image" 
              v-if="isImage"/>
+
+            <video v-if="isContentVideo"  width="560"  controls>
+            <source :src="noteContentVideo" type="video/mp4">
+            </video>
+
+           
              
             <input 
              placeholder="Title" 
@@ -50,11 +56,13 @@ export default {
 
                 <div class="add-todo">
                     <button 
-                    @click="pushNewTodo" >
+                    @click="pushNewTodo"
+                    >
                         <i class="fas fa-plus"></i>
                     </button>
                 
                     <input
+                    @keyup.enter="pushNewTodo" 
                     placeholder="List item" 
                     type="text"
                     v-model="newTodo" 
@@ -73,6 +81,10 @@ export default {
              v-model="inputText" 
              @input="updateText"
             >
+
+            <audio v-if="isContentAudio" controls>
+                <source :src="noteContentAudio" type="audio/mpeg">
+            </audio>
             
             <div 
              class="details">
@@ -83,7 +95,8 @@ export default {
             <div class="tools-container">
             <note-update-toolbar 
              :fatherNote="note" 
-             :noteId="note.id">
+             :noteId="note.id"
+             @closeModal="emitTocloseModal">
             </note-update-toolbar>
 
             <button 
@@ -156,6 +169,12 @@ export default {
             var clock = `${hours}:${minutes}:${seconds}`
             return clock
         },
+        noteContentVideo(){
+            return this.note.content.videoUrl
+        },
+        noteContentAudio(){
+            return this.note.content.audioUrl
+        },
         image() {
             return this.note.content.imageUrl
         },
@@ -164,6 +183,12 @@ export default {
         },
         isImage() {
             return this.note.content.imageUrl
+        },
+        isContentVideo(){
+            return this.note.content.videoUrl
+        },
+        isContentAudio(){
+            return this.note.content.audioUrl
         },
 
     },

@@ -13,9 +13,36 @@ export default {
              @keyup.enter="updateImage" 
              @blur="imageInputActive = false" 
              @click.stop 
-             placeholder="Type image-url,'Enter' to upload" 
+             placeholder="Type Image-url,'Enter' to upload" 
              type="text" 
              id="imageUrl" 
+             size="29"
+             >
+
+             
+            <input
+             ref="videoInput" 
+             v-show="videoInputActive" 
+             v-model="videoUrlFromUser" 
+             @keyup.enter="updateVideo" 
+             @blur="videoInputActive = false" 
+             @click.stop 
+             placeholder="Type Video-url,'Enter' to upload" 
+             type="text" 
+             id="videoUrl" 
+             size="29"
+             >
+
+             <input
+             ref="audioInput" 
+             v-show="audioInputActive" 
+             v-model="audioUrlFromUser" 
+             @keyup.enter="updateAudio" 
+             @blur="audioInputActive = false" 
+             @click.stop 
+             placeholder="Type Audio-url,'Enter' to upload" 
+             type="text" 
+             id="audioUrl" 
              size="29"
              >
 
@@ -38,8 +65,13 @@ export default {
             </button>
 
             <button 
-             @click.stop=toggleArchive>
-                <i class="fas fa-archive"></i>
+             @click.stop="showAudioInput">
+                <i class="fas fa-music"></i>
+            </button>
+
+            <button 
+             @click.stop="showVideoInput">
+                <i class="fas fa-video"></i>
             </button>
 
             <button 
@@ -57,12 +89,17 @@ export default {
         return {
             imageUrlFromUser: '',
             imageInputActive:false,
+            videoUrlFromUser: '',
+            videoInputActive:false,
+            audioUrlFromUser: '',
+            audioInputActive:false,
             colorInputActive:false,
         }
     },
     methods: {
         deleteNote() {
             noteService.deleteNoteByid(this.noteId)
+            this.$emit('closeModal')
         },
         toggleArchive(){
             noteService.update(this.noteId,!this.noteArchive,'archive')
@@ -71,18 +108,31 @@ export default {
             this.imageInputActive = true
             this.$nextTick(() => this.$refs.imageInput.focus())
         },
+        showVideoInput(){
+            this.videoInputActive = true
+            this.$nextTick(() => this.$refs.videoInput.focus())
+        },
+        showAudioInput(){
+            this.audioInputActive = true
+            this.$nextTick(() => this.$refs.audioInput.focus())
+        },
         updateImage(){
             if(this.imageUrlFromUser) noteService.update(this.noteId,this.imageUrlFromUser,'content','imageUrl')
             this.imageInputActive = false
+        },
+        updateVideo(){
+            if(this.videoUrlFromUser) noteService.update(this.noteId,this.videoUrlFromUser,'content','videoUrl')
+            this.videoInputActive = false
+        },
+        updateAudio(){
+            if(this.audioUrlFromUser) noteService.update(this.noteId,this.audioUrlFromUser,'content','audioUrl')
+            this.audioInputActive = false
         },
         updateBackgroundColor(color){
             noteService.update(this.noteId,color,'backgroundColor')
         },
     },
     computed:{
-        noteArchive(){
-            return  this.fatherNote.archive
-        }
     }
   
 
