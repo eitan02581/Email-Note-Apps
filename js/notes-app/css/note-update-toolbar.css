@@ -4,6 +4,12 @@
 section.note-update-toolbar input#imageUrl{
     position: absolute;
 }
+section.note-update-toolbar input#videoUrl{
+    position: absolute;
+}
+section.note-update-toolbar input#audioUrl{
+    position: absolute;
+}
 
 section.note-update-toolbar{
     user-select: none;
@@ -19,6 +25,7 @@ section.note-update-toolbar{
 
 section.note-update-toolbar-color-pallete div.color-pallete-container{
     position: absolute;
+    transform: translate(-11px,-113px);
     user-select: none;
     background-color:white;
     width: 141px;
