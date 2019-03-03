@@ -1,5 +1,11 @@
 import appsBox from './nav-bar-apps-box.cmp.js';
 import emailService from '../../email-app/service/email-service.js'
+import {
+    eventBus,
+    TOGGLE_HAM,
+    SHOW_EMAIL_TO_READ
+
+} from '../../service/event-bus.js'
 export default {
     components: {
         appsBox
@@ -8,6 +14,7 @@ export default {
     <section @click="isSearchActive=false" class="nav-wrapper">
         <nav>
             <div class="logo-ham-container">
+            
                 <div class="hamburger-wrapper">
                     <button @click="onHam">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/VisualEditor_-_Icon_-_Menu.svg/768px-VisualEditor_-_Icon_-_Menu.svg.png">
@@ -35,7 +42,9 @@ export default {
             </div>
         </nav>   
         <transition>
-            <apps-Box @closeBoxApp="closeBoxApp"  v-if="showAppBox"></apps-Box>
+            <keep-alive>
+                <apps-Box :emailsLeftToRead="emailsLeftToRead" @closeBoxApp="closeBoxApp"  v-if="showAppBox"></apps-Box>
+            </keep-alive>
         </transition>
     </section>
     `,
@@ -53,6 +62,7 @@ export default {
             searchValue: null,
             matched: null,
             isSearchActive: false,
+            emailsLeftToRead:null
         }
     },
     computed: {
@@ -61,6 +71,10 @@ export default {
         }
     },
     created() {
+
+        eventBus.$on('SHOW_EMAIL_TO_READ', msg => {
+            this.emailsLeftToRead = msg
+        })
         emailService.getInboxEmails().then((inboxEmails) => {
             this.inboxEmails = inboxEmails
         })
@@ -133,12 +147,10 @@ export default {
             }
         },
         closeBoxApp() {
-
             this.showAppBox = false
         },
         onHam() {
-            // TODO: make it with event bus instaed
-            // this.$emit('hamClicked')
+            eventBus.$emit(' TOGGLE_HAM')
         }
     },
     watch: {

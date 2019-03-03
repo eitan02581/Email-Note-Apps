@@ -63,7 +63,6 @@ export default {
             this.initSpam()
         }
 
-
     },
     computed: {},
     methods: {
@@ -152,8 +151,9 @@ export default {
                 if (!email.isRead) counter++
             })
             this.inboxLeftToRead = counter;
-            this.$emit('leftToRead', counter)
             eventBus.$emit('SHOW_EMAIL_TO_READ', counter)
+            this.$emit('leftToRead', counter)
+
         },
         toggleStarred(email) {
             console.log(email);

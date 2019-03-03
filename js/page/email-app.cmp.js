@@ -14,9 +14,9 @@ export default {
     },
     template: `
     <section class="email-app-wrapper">
-        <div class="aside">
-            <email-aside :InboxLeftToRead="emailsLeftToRead" @showCompose="showCompose = true"></email-aside>
-        </div>
+    <transition name="slide-fade">
+            <email-aside class="aside-mobile" :InboxLeftToRead="emailsLeftToRead" @showCompose="showCompose = true"></email-aside>
+    </transition>    
         <router-view @leftToRead="InboxLeftToRead"  @deleteEmail="onDeleteEmail"  ></router-view>
         <div v-if="showCompose" class="compose-new-mail">
             <email-compose @exitCompose="ExitCompose" ></email-compose>

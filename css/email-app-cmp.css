@@ -4,10 +4,7 @@
     display: flex;
 }
 
-.aside {
-    width: 240px;
-    height: 100%;
-}
+
 
 .compose-new-mail {
     width: 100%;
@@ -15,3 +12,39 @@
     bottom: 0;
 }
 
+/* aside animation */
+
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+    transition: all .3s ease;
+
+}
+
+.slide-fade-leave-active {
+    transition: all .8s ease reverse;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to
+
+/* .slide-fade-leave-active below version 2.1.8 */
+    {
+    transform: translateX(70px);
+    opacity: 0;
+
+}
+
+
+@media(max-width:700px) {
+    .aside-mobile {
+        position: absolute;
+        z-index: 155;
+        background-color: white;
+    }
+
+    .email-aside-wrapper {
+        height: 39%;
+    }
+}
