@@ -306,6 +306,12 @@
     color: white;
 }
 
+.email-details-wrapper .email-container .top button:last-child {
+    font-size: 20px;
+    color: white;
+
+}
+
 .email-details-wrapper .email-container .top button {
     border: none;
     background-color: unset;

@@ -1,8 +1,14 @@
+import {
+    eventBus,
+    TOGGLE_HAM
+} from '../../service/event-bus.js'
+
 export default {
     name: 'email-aside',
     props: ['InboxLeftToRead'],
     template: `
-    <section class="email-aside-wrapper">
+    <section v-if="isAsideOpen" class="email-aside-wrapper">
+    
      <div class="email-aside-container">
             <div class="comose-btn">
                 <button @click="onComposeBtn"><img src="https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png"> Compose</button> 
@@ -10,7 +16,7 @@ export default {
             <router-link  to="/email/inbox">
                 <div class="inbox-btn">
                         <i style="color:#00BCD4;" class="fas fa-inbox "></i><button> Inbox</button>
-                        {{InboxLeftToRead}}
+                       <template v-if="InboxLeftToRead"> {{InboxLeftToRead}}</template>
                 </div>
             </router-link>
             <router-link   to="/email/sent"> 
@@ -31,6 +37,17 @@ export default {
      </div>
     </section>
     `,
+    data() {
+        return {
+            isAsideOpen: true
+        }
+    },
+    created() {
+        eventBus.$on(' TOGGLE_HAM', () => {
+            this.isAsideOpen = !this.isAsideOpen
+
+        })
+    },
     methods: {
 
         onComposeBtn() {
