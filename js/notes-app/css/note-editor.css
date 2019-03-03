@@ -28,7 +28,7 @@ section.note-editor-wrapper input{
     display: block;
 border:none;
 background-image:none;
-background-color:transparent;
+background-color:white;
 -webkit-box-shadow: none;
 -moz-box-shadow: none;
 box-shadow: none;
