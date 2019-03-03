@@ -6,6 +6,8 @@ NOTE SERVICE - NOTES DATABASE & C.R.U.D FUNCTIONS ARE HERE!
 export default {
     getNotes,
     createTextNote,
+    createTodoNote,
+    createImageNote,
     pushNewComment,
     update,
     deleteNoteByid,
@@ -21,6 +23,39 @@ function _getNoteById(id) {
 }
 
 ///C.-CREATE funtcions///
+function createImageNote(newImageUrl){
+
+}
+function createTodoNote(newTitle, newTodosArray){
+    var formattedTodos = []
+    
+    if(newTodosArray){
+        formattedTodos = newTodosArray.map((todo)=>{
+            var formatForTodo = {}
+            formatForTodo['comment'] = todo
+            formatForTodo['isDone'] = true
+            formatForTodo['todoId'] = 'T' +_nextTodoId++ 
+            return formatForTodo
+        })
+    }
+
+    var newNote = {
+        id: 'N' + _nextId++,
+        createdAt: Date.now(),
+        archive: false,
+        pinned: false,
+        content: {
+            title: newTitle,
+            todos: formattedTodos,
+            imageUrl: '',
+        },
+        backgroundColor: 'white',
+    }
+    gNotes.push(newNote)
+    console.log(gNotes)
+    return newNote
+}
+
 function createTextNote(newTitle, newText) {
     var newNote = {
         id: 'N' + _nextId++,
@@ -35,6 +70,7 @@ function createTextNote(newTitle, newText) {
         backgroundColor: 'white',
     }
     gNotes.push(newNote)
+    return newNote
 }
 
 function pushNewComment(fatherNoteId, newComment) {

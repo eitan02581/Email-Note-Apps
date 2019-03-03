@@ -79,6 +79,8 @@ export default {
                 created at: {{noteCreatedAt}}
             </div>
 
+
+            <div class="tools-container">
             <note-update-toolbar 
              :fatherNote="note" 
              :noteId="note.id">
@@ -88,6 +90,7 @@ export default {
              @click="emitTocloseModal">
                 close
             </button>
+            </div>
        
         </section> 
     `,

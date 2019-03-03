@@ -1,80 +1,93 @@
 import noteService from '../services/note-service.js'
+import noteEditor from '../cmp/note-editor.cmp.js'
+
 
 export default {
+    components: {
+        noteService,
+        noteEditor,
+    },
     template: `
-        <section class="notes-creator-wrapper">
+        <section 
+        class="notes-creator-wrapper">
 
-        <div 
-         v-if="textCreatorActive">
 
-            <input 
-             v-model="title" 
-              placeholder="title"
-            >
-
-            <input 
-             v-model="text" 
-             placeholder="take a note.." 
-             ref="textInput"
-            >
-
-            <button 
-             @click="createNewNote(title,text)">
-                create note
-            </button>
-            
+        <div v-if="showEditor">
+                <div @click="closeModal" class="modal-container"></div>
+                <note-editor 
+                :noteFromFather="noteInEditor" 
+                @closeModal="closeModal"
+                @createNewTodo = "pushNewTodo"
+                ></note-editor>
+               
         </div>
         
-
+            
         <div 
-         v-else 
          class="notes-creator-place-saver" 
         >
             <span 
-            @click="openTextCreator"
+            @click="createText"
             >
                 Take a note...
             </span>
 
-            <button>
-                <i class="far fa-check-square"></i>
-            </button>
+            <div class="options-wrapper">
+                <button
+                @click="createTodo">
+                    <i class="far fa-check-square"></i>
+                </button>
 
-            <button>
-                <i class="far fa-image"></i>
-            </button>
+                <button>
+                    <i class="far fa-image"></i>
+                </button>
 
-            <button>
-                <i class="fab fa-youtube"></i>
-            </button>
+                <button>
+                    <i class="fab fa-youtube"></i>
+                </button>
 
-            <button>
-                <i class="fas fa-volume-down"></i>
-            </button>
-
+                <button>
+                    <i class="fas fa-volume-down"></i>
+                </button>
+            </div>
         </div>
-
         </section> 
     `,
-    components: {
-        noteService,
-    },
     data() {
         return {
             title: '',
             text: '',
-            textCreatorActive: false,
+            todos: '',
+            currentCreatComponent: null,
+            showEditor:null,
+            noteInEditor:null,
         }
     },
     methods: {
-        createNewNote(title, text) {
-            noteService.createTextNote(title, text)
+        closeModal(){
+            this.showEditor = false
         },
-        openTextCreator() {
-            this.textCreatorActive = true
-            this.$nextTick(() => this.$refs.textInput.focus())
-        }
+        pushNewTodo(todo,id){
+            console.log(todo,id)
+            noteService.pushNewComment(id,todo)
+        },
+        newTodoNote(){
+            console.log('todos:',this.todos)
+           return noteService.createTodoNote(this.title, this.todos)
+        },
+        createText(){
+          var note =  this.newTextNote()
+          this.noteInEditor = note
+          this.showEditor = true
+        },
+        createTodo(){
+            var note =  this.newTodoNote()
+            console.log('note',note)
+            this.noteInEditor = note
+            this.showEditor = true
+          },
+        newTextNote() {
+           return noteService.createTextNote(this.title, this.text)
+        },
     },
-
-
 }
