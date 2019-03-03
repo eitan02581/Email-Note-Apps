@@ -2,7 +2,7 @@ import noteUpdateToolbar from './note-update-toolbar.cmp.js'
 import contentTodo from './todos.cmp.js'
 
 export default {
-    props:['note'],
+    props: ['note'],
     template: `
         <section class="note-preview-wrapper">
         <div class="note" 
@@ -20,12 +20,12 @@ export default {
                  :src="noteContentImageUrl" 
                 />
 
-                <video v-if="isContentVideo"  width="238"  controls>
+                <video v-if="isContentVideo"    controls>
                 <source :src="noteContentVideo" type="video/mp4">
                 </video>
 
-                
-               
+                <span v-if="isHtmlLInk" v-html="noteContentHtmlLink">
+                </span>
 
                 <div 
                  class="title"
@@ -72,79 +72,87 @@ export default {
         </div> 
         </section> 
     `,
-     components:{
+    components: {
         noteUpdateToolbar,
         contentTodo,
-   },
-   data() {
+    },
+    data() {
         return {
-          
+
         }
     },
     methods: {
-        togglePinNote(){
-            this.note.pinned =  !this.note.pinned
+        togglePinNote() {
+            this.note.pinned = !this.note.pinned
         },
-        emitToOpenEditor(){
-            this.$emit('openEditor',this.note)
+        emitToOpenEditor() {
+            this.$emit('openEditor', this.note)
         },
+        
     },
-    computed:{
-        contentContainsTodos(){
-            if(this.note.content.todos) return this.note.content.todos[0] //empty array is truthy,and we want it to return false
+    computed: {
+        contentContainsTodos() {
+            if (this.note.content.todos) return this.note.content.todos[0] //empty array is truthy,and we want it to return false
             else return this.note.content.todos
         },
-        noteContentUndoneTodos(){
-            if(this.note.content.todos)
-            return this.note.content.todos.filter(todo => todo.isDone === false);
+        noteContentUndoneTodos() {
+            if (this.note.content.todos)
+                return this.note.content.todos.filter(todo => todo.isDone === false);
         },
-        noteContentDoneTodos(){
-            if(this.note.content.todos)
-            return this.note.content.todos.filter(todo => todo.isDone === true);
+        noteContentDoneTodos() {
+            if (this.note.content.todos)
+                return this.note.content.todos.filter(todo => todo.isDone === true);
         },
-        noteContentTiltle(){
+        noteContentTiltle() {
             return this.note.content.title
         },
-        noteContentText(){
+        noteContentText() {
             return this.note.content.text
         },
-        noteCreatedAt(){
+        noteCreatedAt() {
             var date = new Date(this.note.createdAt)
-           var hours = date.getHours()
+            var hours = date.getHours()
             var minutes = date.getMinutes()
             var seconds = date.getSeconds()
-           var clock = `${hours}:${minutes}:${seconds}`
-        return clock
+            var clock = `${hours}:${minutes}:${seconds}`
+            return clock
         },
-        noteContentImageUrl(){
+        noteContentImageUrl() {
             return this.note.content.imageUrl
         },
-        noteContentVideo(){
+        noteContentVideo() {
             return this.note.content.videoUrl
         },
-        noteContentAudio(){
+        noteContentAudio() {
             return this.note.content.audioUrl
         },
-        noteBackgroundColor(){
+        noteBackgroundColor() {
             return this.note.backgroundColor
         },
-        isContentImage(){
-         return this.note.content.imageUrl
+        noteContentHtmlLink(){
+            return this.note.content.htmlLink
         },
-        isContentVideo(){
+        isContentImage() {
+            return this.note.content.imageUrl
+        },
+        isContentVideo() {
             return this.note.content.videoUrl
         },
-        isContentAudio(){
+        isContentAudio() {
             return this.note.content.audioUrl
         },
-        isContentTitle(){
+        isContentTitle() {
             return this.note.content.title
         },
-        isContentText(){
+        isContentText() {
             return this.note.content.text
         },
+        isHtmlLInk(){
+            return this.note.content.htmlLink
+        },
         
-        
+
+
     },
-   
+
 }

@@ -29,7 +29,7 @@ export default {
             </div>
             <div  class="search-wrapper">
                 <input @blur="closeSearchList" v-model="searchValue"  placeholder="Search">
-                <div v-if="isSearchActive" class="filted-list">
+                <div v-if="isSearchActive && isEmail" class="filted-list">
                     <ul>    
                         <router-link @click.native="linkWasClicked" v-for="email in matched" :key="email.id" :to="'/email/' + category + '/' + email.id" >
                             <li><div class="option">{{email.subject}} - {{email.body}}</div></li>

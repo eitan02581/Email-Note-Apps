@@ -18,7 +18,7 @@ export default {
              :src="image" 
              v-if="isImage"/>
 
-            <video v-if="isContentVideo"  width="560"  controls>
+            <video v-if="isContentVideo"    controls>
             <source :src="noteContentVideo" type="video/mp4">
             </video>
 
@@ -32,6 +32,7 @@ export default {
              v-model="inputTitle" 
              @input="updateTitle"
             >
+
 
             <template v-if="contentContainsTodos">
                 <ul>
@@ -62,6 +63,7 @@ export default {
                     </button>
                 
                     <input
+                    style="z-index:1111"
                     @keyup.enter="pushNewTodo" 
                     placeholder="List item" 
                     type="text"
@@ -81,6 +83,9 @@ export default {
              v-model="inputText" 
              @input="updateText"
             >
+
+            <span v-if="isHtmlLInk" v-html="noteContentHtmlLink">
+            </span>
 
             <audio v-if="isContentAudio" controls>
                 <source :src="noteContentAudio" type="audio/mpeg">
@@ -116,7 +121,7 @@ export default {
             note: this.noteFromFather,
             inputText: null,
             inputTitle: null,
-            newTodo:null,
+            newTodo: null,
         }
     },
     created: function () {
@@ -130,29 +135,29 @@ export default {
         emitTocloseModal() {
             this.$emit('closeModal')
         },
-        updateText(){
+        updateText() {
             this.noteFromFather.content.text = this.inputText
         },
-        updateTitle(){
+        updateTitle() {
             this.noteFromFather.content.title = this.inputTitle
         },
-        pushNewTodo(){
-            this.$emit('createNewTodo',this.newTodo,this.note.id)
+        pushNewTodo() {
+            this.$emit('createNewTodo', this.newTodo, this.note.id)
             this.newTodo = null
         }
 
     },
     computed: {
-        contentContainsTodos(){
+        contentContainsTodos() {
             return this.note.content.todos
         },
-        noteContentUndoneTodos(){
-            if(this.note.content.todos)
-            return this.note.content.todos.filter(todo => todo.isDone === false);
+        noteContentUndoneTodos() {
+            if (this.note.content.todos)
+                return this.note.content.todos.filter(todo => todo.isDone === false);
         },
-        noteContentDoneTodos(){
-            if(this.note.content.todos)
-            return this.note.content.todos.filter(todo => todo.isDone === true);
+        noteContentDoneTodos() {
+            if (this.note.content.todos)
+                return this.note.content.todos.filter(todo => todo.isDone === true);
         },
         noteContentTiltle() {
             return this.note.content.title
@@ -168,10 +173,10 @@ export default {
             var clock = `${hours}:${minutes}:${seconds}`
             return clock
         },
-        noteContentVideo(){
+        noteContentVideo() {
             return this.note.content.videoUrl
         },
-        noteContentAudio(){
+        noteContentAudio() {
             return this.note.content.audioUrl
         },
         image() {
@@ -183,13 +188,21 @@ export default {
         isImage() {
             return this.note.content.imageUrl
         },
-        isContentVideo(){
+        isContentVideo() {
             return this.note.content.videoUrl
         },
-        isContentAudio(){
+        isContentAudio() {
             return this.note.content.audioUrl
         },
-
+        isHtmlLInk() {
+            return this.content.htmlLink
+        },
+        noteContentHtmlLink() {
+            return this.note.content.htmlLink
+        },
+        isHtmlLInk() {
+            return this.note.content.htmlLink
+        },
     },
 
 }

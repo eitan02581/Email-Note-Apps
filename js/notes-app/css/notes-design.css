@@ -42,6 +42,7 @@
     color: rgb(0, 0, 0)
 }
 
+
 .notes-app-wrapper i {
     color: rgb(87, 87, 87);
     transition: all 0.3s;
@@ -105,4 +106,33 @@ audio {
     margin: 3px;
     height: 23px;
 
+}
+
+/* note media */
+video {
+    width: 100%;
+}
+
+@media(max-width: 560px) {
+
+    .note-preview-wrapper {
+        width: 100%;
+    }
+
+    .note-preview-wrapper video {
+        width: 100%
+    }
+
+    .note-preview-wrapper div.note {
+        width: unset
+    }
+
+    section.note-editor-wrapper {
+        /* width: unset; */
+    }
+
+    .note-editor-wrapper {
+        width: 318px;
+
+    }
 }

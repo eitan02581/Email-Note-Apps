@@ -156,11 +156,12 @@ var gNotes = [{
         pinned: true,
         content: {
             title: 'Eitan Elnekave',
-            text: 'im a Eitan',
+            text: 'hey checkout my portofolio ',
+            htmlLink: '<a href="https://eitan02581.github.io/portofolio/">my portfolio</a>',
             imageUrl: '../../../css/images/Picture1.png',
             videoUrl: '',
             audioUrl: '',
-        }, 
+        },
         backgroundColor: 'rgb(255, 244, 117)',
     }, {
         id: 'guy',

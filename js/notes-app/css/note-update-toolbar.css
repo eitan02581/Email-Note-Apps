@@ -3,6 +3,7 @@
 
 section.note-update-toolbar input#imageUrl{
     position: absolute;
+    z-index: ;
 }
 section.note-update-toolbar input#videoUrl{
     position: absolute;
