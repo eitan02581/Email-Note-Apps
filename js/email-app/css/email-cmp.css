@@ -12,6 +12,7 @@
     background-color: #f2f5f5cc;
     padding: 10px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .email-preview-wrapper .email-container {
@@ -20,6 +21,11 @@
     align-items: center;
     width: 100%;
     height: 100%;
+
+}
+
+.email-preview-wrapper:hover {
+    background-color: white;
 }
 
 .email-preview-wrapper .email-container .email-subject {
@@ -40,13 +46,13 @@
 
 .email-n-toolbar-wrapper .rigth-toolbar {
     width: 80px;
-    background-color: #f2f5f5cc;
+    background-color: white;
 }
 
 .email-n-toolbar-wrapper .rigth-toolbar button {
     height: 100%;
     border: none;
-    background-color: #f2f5f5cc;
+    background-color: white;
 
 }
 
@@ -54,7 +60,7 @@
     transform: scale(2);
     color: #607d8b;
     cursor: pointer;
-    background-color: #f2f5f5cc;
+    background-color: white;
 
 }
 
@@ -104,7 +110,7 @@
     border-radius: 0 50px 50px 0;
     cursor: pointer;
     font-size: 20px;
-    background-color: #eaeaea;
+    /* background-color: #eaeaea; */
     transition: 0.3s;
     width: 93%
 }
@@ -299,6 +305,7 @@
 
 .email-details-wrapper .email-container .main {
     margin-top: 60px;
+    padding: 5px 20px 16px 20px;
 }
 
 .email-details-wrapper .email-container .top button:first-child {
@@ -325,7 +332,7 @@
 }
 
 .email-details-wrapper .email-container .top button i:hover {
-    color: #eccdcd;
+    /* color: #eccdcd; */
     transform: rotate(15deg)
 }
 
@@ -374,19 +381,46 @@
     display: flex;
     flex-direction: column;
     border-radius: 21px;
-
+    position: relative;
     -webkit-box-shadow: 0px -5px 63px -20px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px -5px 63px -20px rgba(0, 0, 0, 0.75);
     box-shadow: 0px -5px 63px -20px rgba(0, 0, 0, 0.75);
+}
+
+.email-details-wrapper .reply-form form .exit {
+    position: absolute;
+    right: -36px;
+    top: -19px;
+}
+
+
+.email-details-wrapper .reply-form form .exit button i {
+    font-size: 26px;
+    color: #1a73e89c;
+    background-color: unset;
+
+    transition: 0.3s;
+}
+
+.email-details-wrapper .reply-form form .exit i:hover {
+    color: #1a73e8;
+    /* background-color: unset */
+}
+
+.email-details-wrapper .reply-form form .exit button {
+    background-color: unset;
+}
+
+.email-details-wrapper .reply-form form .exit button:hover {
+    color: #1a73e8fb;
+    background-color: unset;
 }
 
 .email-details-wrapper .reply-form form h3 {
     margin: 15px;
 }
 
-.email-details-wrapper .bottom {
-    margin-top: 15px;
-}
+
 
 .email-details-wrapper .bottom button {
     /* width: 100px; */

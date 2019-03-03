@@ -14,7 +14,7 @@ export default {
                 <input  v-model="emailObj.body" placeholder="Subject">
                 <textarea v-model="emailObj.subject" placeholder=""></textarea>
             </div>
-            <button  @click.prenvent.stop="onSendEmail" >Send</button>
+            <button  @click.prevent.stop="onSendEmail" >Send</button>
         </form>
         </div>
     </section>

@@ -17,7 +17,7 @@
 
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
-.slide-fade-enter-active {
+/* .slide-fade-enter-active { 
     transition: all .3s ease;
 
 }
@@ -29,12 +29,15 @@
 .slide-fade-enter,
 .slide-fade-leave-to
 
-/* .slide-fade-leave-active below version 2.1.8 */
+.slide-fade-leave-active below version 2.1.8
     {
     transform: translateX(70px);
     opacity: 0;
 
 }
+/*  */
+
+
 
 
 @media(max-width:700px) {
@@ -42,9 +45,31 @@
         position: absolute;
         z-index: 155;
         background-color: white;
+        border-radius: 0 0 50px;
+
     }
 
     .email-aside-wrapper {
-        height: 39%;
+        height: 47%;
     }
+
+
+}
+
+@media(max-width:500px) {
+    .email-details-wrapper .bottom {
+        margin-top: 15px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+
+
+.activlink div {
+    background-color: #F44336
+}
+
+.activlink button {
+    color: white
 }

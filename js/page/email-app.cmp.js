@@ -13,14 +13,16 @@ export default {
         emailDetails
     },
     template: `
-    <section class="email-app-wrapper">
-    <transition name="slide-fade">
+    <section  class="email-app-wrapper">
+    <transition name="fade">
             <email-aside class="aside-mobile" :InboxLeftToRead="emailsLeftToRead" @showCompose="showCompose = true"></email-aside>
-    </transition>    
+    </transition >    
         <router-view @leftToRead="InboxLeftToRead"  @deleteEmail="onDeleteEmail"  ></router-view>
-        <div v-if="showCompose" class="compose-new-mail">
+        <transition name="fade">
+            <div v-if="showCompose" class="compose-new-mail">
             <email-compose @exitCompose="ExitCompose" ></email-compose>
-        </div>
+            </div>
+        </transition>
     </section>
     `,
     data() {

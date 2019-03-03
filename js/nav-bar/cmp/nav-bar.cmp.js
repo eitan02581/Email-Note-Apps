@@ -14,14 +14,17 @@ export default {
     <section @click="isSearchActive=false" class="nav-wrapper">
         <nav>
             <div class="logo-ham-container">
-            
                 <div class="hamburger-wrapper">
                     <button @click="onHam">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/VisualEditor_-_Icon_-_Menu.svg/768px-VisualEditor_-_Icon_-_Menu.svg.png">
                     </button>
                 </div>
                 <div class="logo-wrapper">
-                    <img :src="logObj"> 
+                
+                    <img v-if="isKeep" :class="{'keep-logo': isKeep }" :src="logObj"> 
+                    <router-link v-if="isEmail"  active-class="activlink"  to="/email/inbox">
+                    <img :class="{'email-logo': isEmail}" :src="logObj"> 
+                </router-link>
                 </div>
             </div>
             <div  class="search-wrapper">
@@ -31,7 +34,7 @@ export default {
                         <router-link @click.native="linkWasClicked" v-for="email in matched" :key="email.id" :to="'/email/' + category + '/' + email.id" >
                             <li><div class="option">{{email.subject}} - {{email.body}}</div></li>
                         </router-link>
-                        <li v-if="matched.length === 0">There are not recent records that match you search</li>
+                        <li style="backgroundColor: #F44336 ; color:white" v-if="matched.length === 0">No records found</li>
                     </ul>
                 </div>
             </div>
@@ -41,7 +44,7 @@ export default {
                 </button>
             </div>
         </nav>   
-        <transition>
+        <transition name="apps" >
             <keep-alive>
                 <apps-Box :emailsLeftToRead="emailsLeftToRead" @closeBoxApp="closeBoxApp"  v-if="showAppBox"></apps-Box>
             </keep-alive>
@@ -54,6 +57,8 @@ export default {
                 keep: 'https://www.google.com/images/icons/product/keep-512.png',
                 email: 'http://pngimg.com/uploads/gmail_logo/gmail_logo_PNG1.png'
             },
+            isKeep: true,
+            isEmail: false,
             showAppBox: false,
             inboxEmails: null,
             sentEmails: null,
@@ -62,12 +67,20 @@ export default {
             searchValue: null,
             matched: null,
             isSearchActive: false,
-            emailsLeftToRead:null
+            emailsLeftToRead: null
         }
     },
     computed: {
         logObj() {
-            return this.$route.path === '/' ? this.logo.keep : this.logo.email
+            if (this.$route.path === '/') {
+                this.isKeep = true
+                this.isEmail = false
+                return this.logo.keep
+            } else {
+                this.isKeep = false
+                this.isEmail = true
+                return this.logo.email
+            }
         }
     },
     created() {

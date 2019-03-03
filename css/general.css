@@ -8,23 +8,24 @@
     font-family: google;
     color: #202124;
     list-style-type: none;
+
 }
 
-button{
+button {
     cursor: pointer;
 }
 
-hr{
-    margin:0;
+hr {
+    margin: 0;
     height: 1px;
     border: 0;
     border-top: 1px solid grey;
-    padding: 0; 
+    padding: 0;
 }
 
-ul{
+ul {
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
 html {
@@ -46,7 +47,8 @@ body {
 }
 
 button:focus {
-    outline: 0;
+    outline: 0 none;
+    background-color: unset
 }
 
 select:focus {
@@ -60,7 +62,12 @@ input:focus {
 textarea:focus {
     outline: 0;
 }
-textarea{
+
+i:focus {
+    outline: 0;
+}
+
+textarea {
     resize: none;
 }
 
@@ -83,9 +90,15 @@ a {
     background-color: #F44336;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
     transition: opacity .5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+}
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active below version 2.1.8 */
+    {
     opacity: 0;
-  }
+}

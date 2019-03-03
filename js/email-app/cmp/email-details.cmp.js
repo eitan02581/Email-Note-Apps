@@ -12,7 +12,7 @@ export default {
     },
     template: `
     <section class="email-details-wrapper" v-if="email">
-            <transition>
+            <transition name="apps">
             <div v-if="actionMade" class="action-indcation">
                 <h1>{{actionTxt}}</h1>
             </div>
@@ -37,6 +37,9 @@ export default {
                 <div class="form-n-btn-container">
                     <div v-if="state" class="reply-form">
                         <form >
+                        <div class="exit">
+                        <button @click="state = false" v-if="state"><i class="far fa-times-circle"></i></button>
+                        </div>
                             <h3 v-if="state === 'reply' && email.from ">To:  <{{ email.from}}> </h3>
                             <h3 v-else-if="state === 'reply'">To:  <{{email.to}}> </h3>
                             <h3 v-if="state === 'forward'">To:  <{{emailObj.to}}> </h3>
@@ -49,8 +52,8 @@ export default {
                     <div class="bottom">
                         <button @click="onReply" > <i class="fas fa-reply"></i>Reply</button>
                         <button  @click="onForward">Forward <i class="fas fa-arrow-right"></i></button>
-                        <button @click="state = false" v-if="state"><i class="far fa-trash-alt"></i></button>
                         <button @click="onMakeNote(email)">Make A Note</button>
+                        
                     </div>
                 </div>
             </div>

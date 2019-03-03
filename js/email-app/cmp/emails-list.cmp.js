@@ -27,6 +27,7 @@ export default {
                 </select>
             </div>
         </div>
+        
         <div v-for="email  in emailToShow" :key="email.id" class="email-n-toolbar-wrapper">
             <div class="rigth-toolbar">
                 <button  @click="setAsUnread(email)" v-if="email.isRead"><i class="fas fa-check-square " ></i> </button>
@@ -34,6 +35,7 @@ export default {
                 <button  @click="toggleStarred(email)" v-if="!email.isStarred" ><i class="far fa-star"></i></button>
                 <button @click="toggleStarred(email)" v-else><i class="fas fa-star"></i></button>
             </div>    
+            
             <email-preview :class="{clicked: email.isRead}" @click.native="onEmailClicked(email)" :email="email" ></email-preview>
         </div>
         <div  class="email-n-toolbar-wrapper" v-if="emailToShow.length === 0"><h1>NO EMAIL TO SHOW</h1></div>

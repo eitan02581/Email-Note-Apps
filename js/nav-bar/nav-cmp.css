@@ -40,8 +40,16 @@
 
 .nav-wrapper .logo-wrapper img {
     width: 57px;
-    height: 40px;
+    /* height: 40px; */
     margin-right: 20px;
+}
+
+.logo-wrapper .keep-logo {
+    height: 53px;
+}
+
+.logo-wrapper .email-logo {
+    height: 40px;
 }
 
 .nav-wrapper .search-wrapper {
@@ -201,11 +209,11 @@
 
 /* animation */
 
-.v-enter-active {
+.apps-enter-active {
     animation: slide .7s;
 }
 
-.v-leave-active {
+.apps-leave-active {
     animation: slide .7s reverse;
 }
 
