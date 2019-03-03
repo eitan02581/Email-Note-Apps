@@ -55,7 +55,6 @@ function createTodoNote(newTitle, newTodosArray){
     var newNote = {
         id: 'N' + _nextId++,
         createdAt: Date.now(),
-        archive: false,
         pinned: false,
         content: {
             title: newTitle,
@@ -76,7 +75,6 @@ function createTextNote(newTitle, newText) {
     var newNote = {
         id: 'N' + _nextId++,
         createdAt: Date.now(),
-        archive: false,
         pinned: false,
         content: {
             title: newTitle,
@@ -118,11 +116,6 @@ function update(noteId, newValue, key, innerKey) {
     _save()
 }
 
-function toggleArchiveById(noteId) {
-    var currNote = _getNoteById(noteId)
-    currNote.archive = !currNote.archive
-    _save()
-}
 
 function updateImage(id, imageUrl) {
     var note = _getNoteById(id)
@@ -157,7 +150,6 @@ function deleteTodo(noteId, id) {
 var gNotes = [{
         id: 'N1',
         createdAt: 1551259417463,
-        archive: false,
         pinned: true,
         content: {
             title: 'first note ever',
@@ -171,7 +163,6 @@ var gNotes = [{
     {
         id: 'N2',
         createdAt: 1551259417463,
-        archive: false,
         pinned: false,
         content: {
             title: 'second note ever',
@@ -185,7 +176,6 @@ var gNotes = [{
     {
         id: 'N3',
         createdAt: 1551463144549,
-        archive: false,
         pinned: true,
         content: {
             title: 'third note ever',
