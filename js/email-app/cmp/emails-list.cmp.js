@@ -30,10 +30,10 @@ export default {
         
         <div v-for="email  in emailToShow" :key="email.id" class="email-n-toolbar-wrapper">
             <div class="rigth-toolbar">
-                <button  @click="setAsUnread(email)" v-if="email.isRead"><i class="fas fa-check-square " ></i> </button>
-                <button  v-else @click="setAsUnread(email)" ><i class="far fa-check-square"></i></button>
-                <button  @click="toggleStarred(email)" v-if="!email.isStarred" ><i class="far fa-star"></i></button>
-                <button @click="toggleStarred(email)" v-else><i class="fas fa-star"></i></button>
+                <button  @click="setAsUnread(email)" v-if="email.isRead"><i class="far fa-envelope-open"></i></button>
+                <button  v-else @click="setAsUnread(email)" ><i style="color:#F44336" class="far fa-envelope"></i></button>
+                <button  @click="toggleStarred(email)" v-if="!email.isStarred" ><i style="color:gold" class="far fa-star"></i></button>
+                <button @click="toggleStarred(email)" v-else><i  style="color:gold" class="fas fa-star"></i></button>
             </div>    
             
             <email-preview :class="{clicked: email.isRead}" @click.native="onEmailClicked(email)" :email="email" ></email-preview>
@@ -73,7 +73,7 @@ export default {
             // set diffenet color for clicked email
             // emailService.emailClicked(email.id, this.category)
             email.isRead = true
-            
+
             // emailService.emailClicked(email.id, this.category).then(() => {
             if (this.$route.path === '/email/inbox') this.countInboxLeft()
             // })
