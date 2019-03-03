@@ -15,12 +15,6 @@ export default {
         </div>
     </section>
     `,
-    data() {
-        return {
-            emailsLeftToRead: null
-        }
-    },
-
     created() {
 
     },
