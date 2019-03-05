@@ -21,7 +21,7 @@ export default {
         </div>
     </transition>
 
-     <div class="email-loading-gif" v-if="isEmailGifLoad"><div :class="{'hide-load-email':hideTheBegginingOfGif }"></div><img  src="../../css/gifs/gmaildribbble.gif"></div>
+     <div class="email-loading-gif" v-if="isEmailGifLoad"><div :class="{'hide-load-email':hideTheBegginingOfGif }"></div><img  src="https://cdn.dribbble.com/users/779602/screenshots/4848986/gmailsmall.gif"></div>
     <template v-else>
         <transition name="fade">
                 <email-aside class="aside-mobile" :InboxLeftToRead="emailsLeftToRead" @showCompose="showCompose = true"></email-aside>
