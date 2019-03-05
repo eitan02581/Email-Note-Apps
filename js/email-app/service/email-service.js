@@ -27,7 +27,59 @@ var gInboxEmails = [{
     isSpam: false
 }, {
     id: utilService.idGenerator(),
-    from: 'eitan02581@gmail.com',
+    from: 'evanyou@gmail.com',
+    subject: ` new vue features `,
+    body: `hey man checkout my new featurs!!
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: true,
+    isSpam: false
+
+
+}, {
+    id: utilService.idGenerator(),
+    from: 'evanyou@gmail.com',
+    subject: ` new vue features `,
+    body: `hey man checkout my new featurs!!
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: false,
+    isSpam: false
+
+
+}, {
+    id: utilService.idGenerator(),
+    from: 'evanyou@gmail.com',
+    subject: ` new vue features `,
+    body: `hey man checkout my new featurs!!
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: false,
+    isSpam: false
+
+
+}, {
+    id: utilService.idGenerator(),
+    from: 'evanyou@gmail.com',
+    subject: ` new vue features `,
+    body: `hey man checkout my new featurs!!
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: false,
+    isSpam: false
+
+
+}, {
+    id: utilService.idGenerator(),
+    from: 'ultimategutiar@gmail.com',
     subject: `Prize #2 D'Angelico Premier Brighton Electric Guitar    `,
     body: `Prize #2 D'Angelico Premier Brighton Electric Guitar 
 
@@ -40,11 +92,9 @@ var gInboxEmails = [{
     isArchive: false,
     isStarred: true,
     isSpam: false
-
-
 }, {
     id: utilService.idGenerator(),
-    from: 'eitan02581@gmail.com',
+    from: 'ultimategutiar@gmail.com',
     subject: `Prize #2 D'Angelico Premier Brighton Electric Guitar    `,
     body: `Prize #2 D'Angelico Premier Brighton Electric Guitar 
 
@@ -59,7 +109,7 @@ var gInboxEmails = [{
     isSpam: false
 }, {
     id: utilService.idGenerator(),
-    from: 'eitan02581@gmail.com',
+    from: 'ultimategutiar@gmail.com',
     subject: `Prize #2 D'Angelico Premier Brighton Electric Guitar    `,
     body: `Prize #2 D'Angelico Premier Brighton Electric Guitar 
 
@@ -67,33 +117,6 @@ var gInboxEmails = [{
     
     The winner will be announced tomorrow so keep an eye on your inbox! 
     `,
-    isRead: false,
-    sentAt: Date.now(),
-    isArchive: false,
-    isStarred: true,
-    isSpam: false
-}, {
-    id: utilService.idGenerator(),
-    from: 'eitan02581@gmail.com',
-    subject: `Prize #2 D'Angelico Premier Brighton Electric Guitar    `,
-    body: `Prize #2 D'Angelico Premier Brighton Electric Guitar 
-
-    Introducing the Premier Brighton, a sleek double-cutaway and the newest addition to the D'Angelico solid-body lineup. Featuring deep cutaways that provide easy access to the highest frets and a lightweight body design, the Brighton is the epitome of performance-friendly. Seymour Duncan Designed humbuckers paired with an alder body offer smooth tone and clear resonance, while a satin-finished slim-C neck shape guarantees comfort for players at every level. 
-    
-    The winner will be announced tomorrow so keep an eye on your inbox! 
-    `,
-    isRead: false,
-    sentAt: Date.now(),
-    isArchive: false,
-    isStarred: true,
-    isSpam: false
-}, {
-    id: utilService.idGenerator(),
-    from: 'eitan02581@gmail.com',
-    subject: `Prize #2 D'Angelico Premier Brighton Electric Guitar    `,
-    body: `Prize #2 D'Angelico Premier Brighton Electric Guitar 
-    Introducing the Premier Brighton, a sleek double-cutaway and the newest addition to the D'Angelico solid-body lineup. Featuring deep cutaways that provide easy access to the highest frets and a lightweight body design, the Brighton is the epitome of performance-friendly. Seymour Duncan Designed humbuckers paired with an alder body offer smooth tone and clear resonance, while a satin-finished slim-C neck shape guarantees comfort for players at every level. 
-    The winner will be announced tomorrow so keep an eye on your inbox! `,
     isRead: false,
     sentAt: Date.now(),
     isArchive: false,
@@ -161,20 +184,71 @@ var gSentEmails = [{
 }]
 var gSpamEmails = [{
     id: utilService.idGenerator(),
-    subject: `Prize #2 D'Angelico Premier Brighton Electric Guitar    `,
-    body: `Prize #2 D'Angelico Premier Brighton Electric Guitar 
-
-    Introducing the Premier Brighton, a sleek double-cutaway and the newest addition to the D'Angelico solid-body lineup. Featuring deep cutaways that provide easy access to the highest frets and a lightweight body design, the Brighton is the epitome of performance-friendly. Seymour Duncan Designed humbuckers paired with an alder body offer smooth tone and clear resonance, while a satin-finished slim-C neck shape guarantees comfort for players at every level. 
-    
-    The winner will be announced tomorrow so keep an eye on your inbox! 
+    from: 'angular@gmail.com',
+    subject: `angular 7`,
+    body: `Angular does not have a concept of "scope" or controllers, instead it uses a hierarchy of components as its primary architectural characteristic.[6]
     `,
-    from: 'minatzemac@gov.co.il',
     isRead: false,
     sentAt: Date.now(),
     isArchive: false,
     isStarred: true,
-    isSpam: false
-}]
+    isSpam: true
+}, {
+    id: utilService.idGenerator(),
+    from: 'angular@gmail.com',
+    subject: `angular 7`,
+    body: `Angular does not have a concept of "scope" or controllers, instead it uses a hierarchy of components as its primary architectural characteristic.[6]
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: true,
+    isSpam: true
+}, {
+    id: utilService.idGenerator(),
+    from: 'angular@gmail.com',
+    subject: `angular 7`,
+    body: `Angular does not have a concept of "scope" or controllers, instead it uses a hierarchy of components as its primary architectural characteristic.[6]
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: true,
+    isSpam: true
+}, {
+    id: utilService.idGenerator(),
+    from: 'react@gmail.com',
+    subject: `react`,
+    body: `React was created by Jordan Walke, a software engineer at Facebook. He was influenced by XHP, an HTML component framework for PHP.[9] It was first deployed on Facebook's newsfeed in 2011 and later on Instagram.com in 2012.[10] It was open-sourced at JSConf US in May 2013.
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: true,
+    isSpam: true
+}, {
+    id: utilService.idGenerator(),
+    from: 'react@gmail.com',
+    subject: `react`,
+    body: `React was created by Jordan Walke, a software engineer at Facebook. He was influenced by XHP, an HTML component framework for PHP.[9] It was first deployed on Facebook's newsfeed in 2011 and later on Instagram.com in 2012.[10] It was open-sourced at JSConf US in May 2013.
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: true,
+    isSpam: true
+}, {
+    id: utilService.idGenerator(),
+    from: 'react@gmail.com',
+    subject: `react`,
+    body: `React was created by Jordan Walke, a software engineer at Facebook. He was influenced by XHP, an HTML component framework for PHP.[9] It was first deployed on Facebook's newsfeed in 2011 and later on Instagram.com in 2012.[10] It was open-sourced at JSConf US in May 2013.
+    `,
+    isRead: false,
+    sentAt: Date.now(),
+    isArchive: false,
+    isStarred: true,
+    isSpam: true
+}, ]
 
 loadEmailsFromStroage()
 

@@ -156,7 +156,7 @@ var gNotes = [{
         pinned: true,
         content: {
             title: 'Eitan Elnekave',
-            text: 'hey checkout my portofolio ',
+            text: `Hey I'm Eitan 22 years old , love surfing and programming , passionate about css and Vue js  checkout my portofolio `,
             htmlLink: '<a href="https://eitan02581.github.io/portofolio/">my portfolio</a>',
             imageUrl: '../../../css/images/Picture1.png',
             videoUrl: '',
@@ -169,7 +169,8 @@ var gNotes = [{
         pinned: true,
         content: {
             title: 'Guy Shpigler',
-            text: 'im a Guy',
+            text: `in this project we used html5,css,js and vue-framework to build an amazing site. we learned about vue basic functions, routs,dynamic components and eventbus. we worked simultanily and integrated on git and github`,
+            htmlLink: ' <a href="https://shpiglify.github.io/gallery/">my portfolio</a> ',
             imageUrl: '../../../css/images/profil2.jpg',
             videoUrl: '',
             audioUrl: '',

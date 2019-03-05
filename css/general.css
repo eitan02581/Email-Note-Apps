@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'google';
-    src: url('css/fonts/NotoSans-Regular.ttf');
+    src: url('/css/fonts/NotoSans-Regular.ttf');
 }
 
 * {
